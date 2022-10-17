@@ -1,0 +1,1131 @@
+[
+    {
+        "id": "3b3b3bd8ed7187ea",
+        "type": "tab",
+        "label": "G-IED",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6e68ccc7619dd4a3",
+        "type": "tab",
+        "label": "General PLC",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ebff01b2ab5c17c7",
+        "type": "subflow",
+        "name": "IED",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 880,
+                "wires": [
+                    {
+                        "id": "8fadcf38be28b233"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 640,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "7324daa98bc4c7d5",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 960,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "603cb110f15cb39b",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1100,
+                "y": 460,
+                "wires": [
+                    {
+                        "id": "6ab4edb83eb1758b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "7e859fb4550fa5a8",
+        "type": "modbus-client",
+        "name": "PLC2",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.24",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "3b5e9486fa3d6e62",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "36d2a8a0962b6e53",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0300cc",
+                "baseFont": "Tahoma,Geneva,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Tahoma,Geneva,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Tahoma,Geneva,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8b7ff1370815ca25",
+        "type": "ui_group",
+        "name": "G-IED",
+        "tab": "3b5e9486fa3d6e62",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "103fa0a5e42e3192",
+        "type": "modbus-client",
+        "z": "ebff01b2ab5c17c7",
+        "name": "ModSim32",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "host.docker.internal",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "754823324e1fd8fc",
+        "type": "ui_group",
+        "name": "General PLC",
+        "tab": "3b5e9486fa3d6e62",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "831463b0b8bf21ef",
+        "type": "modbus-client",
+        "name": "PLC1",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.22",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "7324daa98bc4c7d5",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "computes CB0",
+        "func": "var threshold = flow.get(\"Threshold\");\nvar injection = flow.get(\"Injection\");\nvar state = flow.get(\"State\");\nvar cb0 = flow.get(\"CB0\");\n\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    if (injection==1)\n        value = flow.get(\"Power\") + threshold;\n    else    value = flow.get(\"Power\");\n    if (value > threshold)\n        cb0 = 1;\n} else value = 0;\n\nmsg.payload = [cb0];\nmsg.value = value;\n\nflow.set(\"CB0\", cb0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Threshold\", 50000);\nflow.set(\"State\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "111a1ce21b25c4a7",
+                "603cb110f15cb39b"
+            ]
+        ]
+    },
+    {
+        "id": "7e2ee599ed3a1da4",
+        "type": "modbus-write",
+        "z": "ebff01b2ab5c17c7",
+        "name": "writes CB0 in the PLC",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "unitid": "0",
+        "dataType": "MHoldingRegisters",
+        "adr": "5",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 760,
+        "y": 220,
+        "wires": [
+            [
+                "95e679e3ff5e511f"
+            ],
+            []
+        ],
+        "inputLabels": [
+            "msg.payload"
+        ]
+    },
+    {
+        "id": "111a1ce21b25c4a7",
+        "type": "delay",
+        "z": "ebff01b2ab5c17c7",
+        "name": "generates some delay",
+        "pauseType": "delayv",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 160,
+        "wires": [
+            [
+                "7e2ee599ed3a1da4"
+            ]
+        ]
+    },
+    {
+        "id": "024821b5ce7b7cfa",
+        "type": "inject",
+        "z": "ebff01b2ab5c17c7",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "7324daa98bc4c7d5",
+                "19129cd1cca27bd0",
+                "1a23bd909095073e"
+            ]
+        ]
+    },
+    {
+        "id": "95e679e3ff5e511f",
+        "type": "modbus-response",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 810,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "19129cd1cca27bd0",
+        "type": "modbus-server",
+        "z": "ebff01b2ab5c17c7",
+        "name": "the server is listening",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": 10502,
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": "10",
+        "holdingBufferSize": "10",
+        "inputBufferSize": "10",
+        "discreteBufferSize": "10",
+        "showErrors": false,
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "8ec6196c115f659c",
+                "e6d1cd832796c2b6"
+            ],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8ec6196c115f659c",
+        "type": "buffer-parser",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads a register",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "value",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 700,
+        "y": 440,
+        "wires": [
+            [
+                "6ab4edb83eb1758b",
+                "f2319ea7f557877e"
+            ]
+        ]
+    },
+    {
+        "id": "6ab4edb83eb1758b",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and sets the state",
+        "func": "var registerValue = msg.payload;\nvar state = flow.get(\"State\");\n\n//Se il PLC invia un valore alto,\n//allora il dispositivo viene attivato.\nif (registerValue > 0)\n    state = 1;\nelse\n    state = 0;\n\nmsg.payload = state;\n\nflow.set(\"State\", state);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"CB0\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6d1cd832796c2b6",
+        "type": "debug",
+        "z": "ebff01b2ab5c17c7",
+        "name": "ServerDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "f2319ea7f557877e",
+        "type": "debug",
+        "z": "ebff01b2ab5c17c7",
+        "name": "ParserDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1a23bd909095073e",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "the plant generates power",
+        "func": "var power = flow.get(\"Power\");\n\n//Genera un valore casuale nell'insieme {-1, 0, 1}\nvar delta = (Math.round(Math.random() * 2 - 1))*500;\npower += delta;\n\nmsg.payload = power;\n\nflow.set(\"Power\", power);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nflow.set(\"Power\", 25000);",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 560,
+        "wires": [
+            [
+                "a01e72ea313f10de"
+            ]
+        ]
+    },
+    {
+        "id": "8fadcf38be28b233",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "determines a failure state",
+        "func": "if (msg.topic == \"Injection\") {\n    flow.set(\"Injection\", 1);\n    msg.payload = 1;\n}\nif (msg.topic == \"Restoration\") {\n    flow.set(\"Injection\", 0);\n    msg.payload = 0;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Injection\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 880,
+        "wires": [
+            [
+                "99d576deaaeef1f3"
+            ]
+        ]
+    },
+    {
+        "id": "99d576deaaeef1f3",
+        "type": "debug",
+        "z": "ebff01b2ab5c17c7",
+        "name": "FailureDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "a01e72ea313f10de",
+        "type": "debug",
+        "z": "ebff01b2ab5c17c7",
+        "name": "PowerDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "3f8873f5a495aed6",
+        "type": "modbus-read",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads CB0 in the PLC ",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "831463b0b8bf21ef",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 160,
+        "y": 740,
+        "wires": [
+            [
+                "7aaf8beff2539f32"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7aaf8beff2539f32",
+        "type": "modbus-response",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 430,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "603cb110f15cb39b",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "generates a value for the LED",
+        "func": "var cb0 = msg.payload[0];\n\nmsg.payload = cb0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e96a4ee949135f8",
+        "type": "subflow:ebff01b2ab5c17c7",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "IED",
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "ae27c91aae8f8d4b"
+            ],
+            [
+                "4db6d3fc7a30a1bb"
+            ],
+            [
+                "c508fce9b140fe4d"
+            ]
+        ]
+    },
+    {
+        "id": "ae27c91aae8f8d4b",
+        "type": "ui_gauge",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "ValueGauge",
+        "group": "8b7ff1370815ca25",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Power",
+        "label": "W",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "35000",
+        "seg2": "50000",
+        "className": "",
+        "x": 710,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "df2f1a061b3de1d8",
+        "type": "ui_button",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "FailureButton",
+        "group": "8b7ff1370815ca25",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Inject",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Injection",
+        "topicType": "str",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "4e96a4ee949135f8"
+            ]
+        ]
+    },
+    {
+        "id": "b06652c825814228",
+        "type": "ui_button",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "RestoreButton",
+        "group": "8b7ff1370815ca25",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Restore",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Restoration",
+        "topicType": "str",
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "4e96a4ee949135f8"
+            ]
+        ]
+    },
+    {
+        "id": "d90ed2cac6a02473",
+        "type": "comment",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "Funzionamento di G-IED",
+        "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
+        "x": 570,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4db6d3fc7a30a1bb",
+        "type": "ui_led",
+        "z": "3b3b3bd8ed7187ea",
+        "order": 3,
+        "group": "8b7ff1370815ca25",
+        "width": 0,
+        "height": 0,
+        "label": "CB0",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "CB0Led",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c508fce9b140fe4d",
+        "type": "ui_led",
+        "z": "3b3b3bd8ed7187ea",
+        "order": 5,
+        "group": "8b7ff1370815ca25",
+        "width": 0,
+        "height": 0,
+        "label": "State",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "StateLed",
+        "x": 700,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e778877145f64af1",
+        "type": "ui_switch",
+        "z": "6e68ccc7619dd4a3",
+        "name": "ConnectSwitch",
+        "label": "Connect",
+        "tooltip": "",
+        "group": "754823324e1fd8fc",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Connection",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "2070a79f2d85bdde"
+            ]
+        ]
+    },
+    {
+        "id": "2070a79f2d85bdde",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "connects the grid",
+        "func": "if (msg.payload == true)\n    msg.payload = [1];\nelse if (msg.payload == false)\n    msg.payload = [0];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "21d9f3f50408d53a"
+            ]
+        ]
+    },
+    {
+        "id": "21d9f3f50408d53a",
+        "type": "modbus-write",
+        "z": "6e68ccc7619dd4a3",
+        "name": "writes the value in the PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "MHoldingRegisters",
+        "adr": "10",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "d2a233d1c17e3b06"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d2a233d1c17e3b06",
+        "type": "modbus-response",
+        "z": "6e68ccc7619dd4a3",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 930,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ec5b6ec1a54e73aa",
+        "type": "modbus-read",
+        "z": "6e68ccc7619dd4a3",
+        "name": "reads the value in the PLC ",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "10",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "831463b0b8bf21ef",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "ecfa19f130dbb6cc",
+                "f83581df9629834b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ecfa19f130dbb6cc",
+        "type": "modbus-response",
+        "z": "6e68ccc7619dd4a3",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 450,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6df0b24d0ba88a26",
+        "type": "modbus-write",
+        "z": "6e68ccc7619dd4a3",
+        "name": "writes values in the PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "MHoldingRegisters",
+        "adr": "0",
+        "quantity": "10",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 710,
+        "y": 620,
+        "wires": [
+            [
+                "ed435d717a40ac77"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "88cc9c64432a0d3a",
+        "type": "inject",
+        "z": "6e68ccc7619dd4a3",
+        "name": "Injects a memory clean",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Reset",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "dbeb7a946c25f60d"
+            ]
+        ]
+    },
+    {
+        "id": "ed435d717a40ac77",
+        "type": "modbus-response",
+        "z": "6e68ccc7619dd4a3",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 990,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "dbeb7a946c25f60d",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "generates the message",
+        "func": "msg.payload = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 580,
+        "wires": [
+            [
+                "6df0b24d0ba88a26"
+            ]
+        ]
+    },
+    {
+        "id": "398332ac06ec2365",
+        "type": "modbus-read",
+        "z": "6e68ccc7619dd4a3",
+        "name": "reads PLC memory",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "25",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "831463b0b8bf21ef",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "57955f162a9e015a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "57955f162a9e015a",
+        "type": "modbus-response",
+        "z": "6e68ccc7619dd4a3",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 410,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c9348ca6d5c99776",
+        "type": "comment",
+        "z": "6e68ccc7619dd4a3",
+        "name": "PLC memory",
+        "info": "Questi flow permettono di effettuare\nopportunamente il clean e la lettura\ndella memoria.",
+        "x": 150,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "315b019c23f014ac",
+        "type": "comment",
+        "z": "6e68ccc7619dd4a3",
+        "name": "PLC connection",
+        "info": "Questi flow permettono di inviare\nil segnale al PLC, che richiederà la\nconnessione a G-IED.",
+        "x": 180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "35e64ebd7905c08f",
+        "type": "ui_led",
+        "z": "6e68ccc7619dd4a3",
+        "order": 1,
+        "group": "754823324e1fd8fc",
+        "width": 0,
+        "height": 0,
+        "label": "Connection",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "ConnectionLED",
+        "x": 740,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f83581df9629834b",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "generates a value for the LED",
+        "func": "var connect = msg.payload[0];\n\nmsg.payload = connect;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "35e64ebd7905c08f"
+            ]
+        ]
+    }
+]
