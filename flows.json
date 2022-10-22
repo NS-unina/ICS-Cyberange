@@ -682,7 +682,7 @@
         "seg2": "50000",
         "className": "",
         "x": 710,
-        "y": 220,
+        "y": 200,
         "wires": []
     },
     {
@@ -747,8 +747,8 @@
         "z": "3b3b3bd8ed7187ea",
         "name": "Funzionamento di G-IED",
         "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
-        "x": 570,
-        "y": 120,
+        "x": 350,
+        "y": 140,
         "wires": []
     },
     {
@@ -779,7 +779,7 @@
         "showGlow": true,
         "name": "CB0Led",
         "x": 700,
-        "y": 280,
+        "y": 260,
         "wires": []
     },
     {
@@ -790,12 +790,12 @@
         "group": "8b7ff1370815ca25",
         "width": 0,
         "height": 0,
-        "label": "State",
+        "label": "Status",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -810,7 +810,7 @@
         "showGlow": true,
         "name": "StateLed",
         "x": 700,
-        "y": 340,
+        "y": 320,
         "wires": []
     },
     {
@@ -951,7 +951,7 @@
         "unitid": "1",
         "dataType": "MHoldingRegisters",
         "adr": "0",
-        "quantity": "10",
+        "quantity": "25",
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
