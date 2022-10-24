@@ -1,16 +1,16 @@
 [
     {
-        "id": "3b3b3bd8ed7187ea",
+        "id": "6e68ccc7619dd4a3",
         "type": "tab",
-        "label": "G-IED",
+        "label": "General PLC",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "6e68ccc7619dd4a3",
+        "id": "3b3b3bd8ed7187ea",
         "type": "tab",
-        "label": "General PLC",
+        "label": "G-IED",
         "disabled": false,
         "info": "",
         "env": []
@@ -23,47 +23,16 @@
         "category": "",
         "in": [
             {
-                "x": 60,
-                "y": 880,
+                "x": 200,
+                "y": 760,
                 "wires": [
                     {
-                        "id": "8fadcf38be28b233"
+                        "id": "1a23bd909095073e"
                     }
                 ]
             }
         ],
-        "out": [
-            {
-                "x": 640,
-                "y": 40,
-                "wires": [
-                    {
-                        "id": "7324daa98bc4c7d5",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 960,
-                "y": 60,
-                "wires": [
-                    {
-                        "id": "603cb110f15cb39b",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 1100,
-                "y": 460,
-                "wires": [
-                    {
-                        "id": "6ab4edb83eb1758b",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
+        "out": [],
         "env": [],
         "meta": {},
         "color": "#DDAA99"
@@ -98,7 +67,7 @@
     {
         "id": "3b5e9486fa3d6e62",
         "type": "ui_tab",
-        "name": "Home",
+        "name": "Plant",
         "icon": "dashboard",
         "disabled": false,
         "hidden": false
@@ -209,7 +178,7 @@
         "tab": "3b5e9486fa3d6e62",
         "order": 2,
         "disp": true,
-        "width": "6",
+        "width": 6,
         "collapse": false,
         "className": ""
     },
@@ -248,7 +217,7 @@
         "tab": "3b5e9486fa3d6e62",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": 6,
         "collapse": false,
         "className": ""
     },
@@ -280,22 +249,45 @@
         "parallelUnitIdsAllowed": true
     },
     {
+        "id": "03f1fba405b5f9d1",
+        "type": "ui_group",
+        "z": "ebff01b2ab5c17c7",
+        "name": "Generator",
+        "tab": "3b5e9486fa3d6e62",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cc6dada4226f6a68",
+        "type": "ui_spacer",
+        "z": "6e68ccc7619dd4a3",
+        "name": "spacer",
+        "group": "754823324e1fd8fc",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "7324daa98bc4c7d5",
         "type": "function",
         "z": "ebff01b2ab5c17c7",
-        "name": "computes CB0",
-        "func": "var threshold = flow.get(\"Threshold\");\nvar injection = flow.get(\"Injection\");\nvar state = flow.get(\"State\");\nvar cb0 = flow.get(\"CB0\");\n\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    if (injection==1)\n        value = flow.get(\"Power\") + threshold;\n    else    value = flow.get(\"Power\");\n    if (value > threshold)\n        cb0 = 1;\n} else value = 0;\n\nmsg.payload = [cb0];\nmsg.value = value;\n\nflow.set(\"CB0\", cb0);\n\nreturn msg;",
+        "name": "compares the value with a threshold",
+        "func": "var threshold = global.get(\"Threshold\");\nvar state = flow.get(\"State\");\nvar cb0 = flow.get(\"CB0\");\n\nvar failure = 0;\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    value = global.get(\"Power\");\n    if (value > threshold) {\n        cb0 = 1;\n        failure = 1;\n    }\n} else value = 0;\n\nflow.set(\"CB0\", cb0);\n\nmsg.cb0 = cb0;\nmsg.value = value;\nmsg.payload = [failure];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Threshold\", 50000);\nflow.set(\"State\", 0);",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"Threshold\", 50000);\nflow.set(\"State\", 0);",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 120,
+        "x": 510,
+        "y": 200,
         "wires": [
             [
+                "ae27c91aae8f8d4b",
                 "111a1ce21b25c4a7",
-                "603cb110f15cb39b"
+                "7e2ee599ed3a1da4"
             ]
         ]
     },
@@ -303,7 +295,7 @@
         "id": "7e2ee599ed3a1da4",
         "type": "modbus-write",
         "z": "ebff01b2ab5c17c7",
-        "name": "writes CB0 in the PLC",
+        "name": "writes failure state in the PLC",
         "showStatusActivities": true,
         "showErrors": true,
         "unitid": "0",
@@ -313,8 +305,8 @@
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
-        "x": 760,
-        "y": 220,
+        "x": 900,
+        "y": 320,
         "wires": [
             [
                 "95e679e3ff5e511f"
@@ -329,7 +321,7 @@
         "id": "111a1ce21b25c4a7",
         "type": "delay",
         "z": "ebff01b2ab5c17c7",
-        "name": "generates some delay",
+        "name": "activates circuit breaker",
         "pauseType": "delayv",
         "timeout": "2",
         "timeoutUnits": "seconds",
@@ -342,11 +334,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 720,
-        "y": 160,
+        "x": 830,
+        "y": 200,
         "wires": [
             [
-                "7e2ee599ed3a1da4"
+                "603cb110f15cb39b"
             ]
         ]
     },
@@ -368,12 +360,11 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 220,
+        "y": 300,
         "wires": [
             [
                 "7324daa98bc4c7d5",
-                "19129cd1cca27bd0",
-                "1a23bd909095073e"
+                "19129cd1cca27bd0"
             ]
         ]
     },
@@ -383,8 +374,8 @@
         "z": "ebff01b2ab5c17c7",
         "name": "and receives a response",
         "registerShowMax": 20,
-        "x": 810,
-        "y": 280,
+        "x": 950,
+        "y": 380,
         "wires": []
     },
     {
@@ -403,7 +394,7 @@
         "discreteBufferSize": "10",
         "showErrors": false,
         "x": 460,
-        "y": 420,
+        "y": 500,
         "wires": [
             [
                 "8ec6196c115f659c",
@@ -450,7 +441,7 @@
         "setTopic": true,
         "outputs": 1,
         "x": 700,
-        "y": 440,
+        "y": 520,
         "wires": [
             [
                 "6ab4edb83eb1758b",
@@ -470,9 +461,11 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 440,
+        "y": 520,
         "wires": [
-            []
+            [
+                "c508fce9b140fe4d"
+            ]
         ]
     },
     {
@@ -489,7 +482,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 380,
+        "y": 480,
         "wires": []
     },
     {
@@ -506,7 +499,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 910,
-        "y": 380,
+        "y": 480,
         "wires": []
     },
     {
@@ -514,55 +507,20 @@
         "type": "function",
         "z": "ebff01b2ab5c17c7",
         "name": "the plant generates power",
-        "func": "var power = flow.get(\"Power\");\n\n//Genera un valore casuale nell'insieme {-1, 0, 1}\nvar delta = (Math.round(Math.random() * 2 - 1))*500;\npower += delta;\n\nmsg.payload = power;\n\nflow.set(\"Power\", power);\n\nreturn msg;",
+        "func": "var generator = global.get(\"Generator\");\nvar power = global.get(\"Power\");\nvar threshold = global.get(\"Threshold\");\n\nif (generator == \"on\") {\n    //Iniezione di un guasto nel sistema\n    if (msg.topic == \"Injection\")\n        power += threshold;\n    //Ripristino del sistema a un valore sicuro\n    else if (msg.topic == \"Restoration\")\n        power = threshold/2;\n    else {\n        //Genera un valore casuale nell'insieme {-1, 0, 1}\n        var delta = (Math.round(Math.random() * 2 - 1)) * 500;\n        power += delta;\n    }\n    //Se il valore ottenuto eccede i range\n    //viene ricondotto a un valore standard\n    if (power < 0 || power > 2 * threshold)\n        power = threshold / 2;\n} else\n    power = 0;\n\nmsg.payload = power;\n\nglobal.set(\"Power\", power);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nflow.set(\"Power\", 25000);",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nvar threshold = global.get(\"Threshold\");\n\nglobal.set(\"Generator\", \"on\");\nglobal.set(\"Power\", threshold/2);",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 560,
+        "x": 390,
+        "y": 720,
         "wires": [
             [
-                "a01e72ea313f10de"
+                "a01e72ea313f10de",
+                "2feaf5cb346f6bbf"
             ]
         ]
-    },
-    {
-        "id": "8fadcf38be28b233",
-        "type": "function",
-        "z": "ebff01b2ab5c17c7",
-        "name": "determines a failure state",
-        "func": "if (msg.topic == \"Injection\") {\n    flow.set(\"Injection\", 1);\n    msg.payload = 1;\n}\nif (msg.topic == \"Restoration\") {\n    flow.set(\"Injection\", 0);\n    msg.payload = 0;\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Injection\", 0);",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 880,
-        "wires": [
-            [
-                "99d576deaaeef1f3"
-            ]
-        ]
-    },
-    {
-        "id": "99d576deaaeef1f3",
-        "type": "debug",
-        "z": "ebff01b2ab5c17c7",
-        "name": "FailureDebug",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 880,
-        "wires": []
     },
     {
         "id": "a01e72ea313f10de",
@@ -577,49 +535,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "3f8873f5a495aed6",
-        "type": "modbus-read",
-        "z": "ebff01b2ab5c17c7",
-        "name": "reads CB0 in the PLC ",
-        "topic": "",
-        "showStatusActivities": false,
-        "logIOActivities": false,
-        "showErrors": false,
-        "unitid": "1",
-        "dataType": "HoldingRegister",
-        "adr": "5",
-        "quantity": "1",
-        "rate": "1",
-        "rateUnit": "s",
-        "delayOnStart": false,
-        "startDelayTime": "",
-        "server": "831463b0b8bf21ef",
-        "useIOFile": false,
-        "ioFile": "",
-        "useIOForPayload": false,
-        "emptyMsgOnFail": false,
-        "x": 160,
-        "y": 740,
-        "wires": [
-            [
-                "7aaf8beff2539f32"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "7aaf8beff2539f32",
-        "type": "modbus-response",
-        "z": "ebff01b2ab5c17c7",
-        "name": "and receives a response",
-        "registerShowMax": 20,
-        "x": 430,
-        "y": 780,
+        "x": 630,
+        "y": 760,
         "wires": []
     },
     {
@@ -627,41 +544,24 @@
         "type": "function",
         "z": "ebff01b2ab5c17c7",
         "name": "generates a value for the LED",
-        "func": "var cb0 = msg.payload[0];\n\nmsg.payload = cb0;\n\nreturn msg;",
+        "func": "var cb0 = msg.cb0;\n\nmsg.payload = cb0;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4e96a4ee949135f8",
-        "type": "subflow:ebff01b2ab5c17c7",
-        "z": "3b3b3bd8ed7187ea",
-        "name": "IED",
-        "x": 450,
+        "x": 890,
         "y": 260,
         "wires": [
             [
-                "ae27c91aae8f8d4b"
-            ],
-            [
                 "4db6d3fc7a30a1bb"
-            ],
-            [
-                "c508fce9b140fe4d"
             ]
         ]
     },
     {
         "id": "ae27c91aae8f8d4b",
         "type": "ui_gauge",
-        "z": "3b3b3bd8ed7187ea",
+        "z": "ebff01b2ab5c17c7",
         "name": "ValueGauge",
         "group": "8b7ff1370815ca25",
         "order": 1,
@@ -681,81 +581,15 @@
         "seg1": "35000",
         "seg2": "50000",
         "className": "",
-        "x": 710,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "df2f1a061b3de1d8",
-        "type": "ui_button",
-        "z": "3b3b3bd8ed7187ea",
-        "name": "FailureButton",
-        "group": "8b7ff1370815ca25",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Inject",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "Injection",
-        "topicType": "str",
-        "x": 210,
-        "y": 220,
-        "wires": [
-            [
-                "4e96a4ee949135f8"
-            ]
-        ]
-    },
-    {
-        "id": "b06652c825814228",
-        "type": "ui_button",
-        "z": "3b3b3bd8ed7187ea",
-        "name": "RestoreButton",
-        "group": "8b7ff1370815ca25",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Restore",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "Restoration",
-        "topicType": "str",
-        "x": 200,
-        "y": 280,
-        "wires": [
-            [
-                "4e96a4ee949135f8"
-            ]
-        ]
-    },
-    {
-        "id": "d90ed2cac6a02473",
-        "type": "comment",
-        "z": "3b3b3bd8ed7187ea",
-        "name": "Funzionamento di G-IED",
-        "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
-        "x": 350,
+        "x": 790,
         "y": 140,
         "wires": []
     },
     {
         "id": "4db6d3fc7a30a1bb",
         "type": "ui_led",
-        "z": "3b3b3bd8ed7187ea",
-        "order": 3,
+        "z": "ebff01b2ab5c17c7",
+        "order": 2,
         "group": "8b7ff1370815ca25",
         "width": 0,
         "height": 0,
@@ -778,15 +612,15 @@
         "shape": "circle",
         "showGlow": true,
         "name": "CB0Led",
-        "x": 700,
-        "y": 260,
+        "x": 1140,
+        "y": 220,
         "wires": []
     },
     {
         "id": "c508fce9b140fe4d",
         "type": "ui_led",
-        "z": "3b3b3bd8ed7187ea",
-        "order": 5,
+        "z": "ebff01b2ab5c17c7",
+        "order": 3,
         "group": "8b7ff1370815ca25",
         "width": 0,
         "height": 0,
@@ -809,9 +643,102 @@
         "shape": "circle",
         "showGlow": true,
         "name": "StateLed",
-        "x": 700,
-        "y": 320,
+        "x": 1140,
+        "y": 480,
         "wires": []
+    },
+    {
+        "id": "79e4198832d4910a",
+        "type": "comment",
+        "z": "ebff01b2ab5c17c7",
+        "name": "Real IED",
+        "info": "",
+        "x": 440,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "085c56993b9aec04",
+        "type": "comment",
+        "z": "ebff01b2ab5c17c7",
+        "name": "Generator",
+        "info": "",
+        "x": 420,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7c8ef3e671484c45",
+        "type": "inject",
+        "z": "ebff01b2ab5c17c7",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0",
+        "topic": "\"Power generation\"",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 680,
+        "wires": [
+            [
+                "1a23bd909095073e"
+            ]
+        ]
+    },
+    {
+        "id": "2feaf5cb346f6bbf",
+        "type": "ui_chart",
+        "z": "ebff01b2ab5c17c7",
+        "name": "",
+        "group": "03f1fba405b5f9d1",
+        "order": 1,
+        "width": 6,
+        "height": 6,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 680,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "e778877145f64af1",
@@ -896,21 +823,21 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 930,
-        "y": 200,
+        "y": 180,
         "wires": []
     },
     {
         "id": "ec5b6ec1a54e73aa",
         "type": "modbus-read",
         "z": "6e68ccc7619dd4a3",
-        "name": "reads the value in the PLC ",
+        "name": "reads the failure state in the PLC ",
         "topic": "",
         "showStatusActivities": false,
         "logIOActivities": false,
         "showErrors": false,
         "unitid": "1",
         "dataType": "HoldingRegister",
-        "adr": "10",
+        "adr": "5",
         "quantity": "1",
         "rate": "1",
         "rateUnit": "s",
@@ -921,12 +848,13 @@
         "ioFile": "",
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
-        "x": 170,
-        "y": 360,
+        "x": 190,
+        "y": 380,
         "wires": [
             [
                 "ecfa19f130dbb6cc",
-                "f83581df9629834b"
+                "f83581df9629834b",
+                "5c9ffe43903514d6"
             ],
             []
         ]
@@ -937,7 +865,7 @@
         "z": "6e68ccc7619dd4a3",
         "name": "and receives a response",
         "registerShowMax": 20,
-        "x": 450,
+        "x": 490,
         "y": 320,
         "wires": []
     },
@@ -955,8 +883,8 @@
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
-        "x": 710,
-        "y": 620,
+        "x": 670,
+        "y": 800,
         "wires": [
             [
                 "ed435d717a40ac77"
@@ -965,37 +893,13 @@
         ]
     },
     {
-        "id": "88cc9c64432a0d3a",
-        "type": "inject",
-        "z": "6e68ccc7619dd4a3",
-        "name": "Injects a memory clean",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "Reset",
-        "x": 160,
-        "y": 560,
-        "wires": [
-            [
-                "dbeb7a946c25f60d"
-            ]
-        ]
-    },
-    {
         "id": "ed435d717a40ac77",
         "type": "modbus-response",
         "z": "6e68ccc7619dd4a3",
         "name": "and receives a response",
         "registerShowMax": 20,
-        "x": 990,
-        "y": 660,
+        "x": 950,
+        "y": 760,
         "wires": []
     },
     {
@@ -1009,8 +913,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 580,
+        "x": 390,
+        "y": 760,
         "wires": [
             [
                 "6df0b24d0ba88a26"
@@ -1040,7 +944,7 @@
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
         "x": 150,
-        "y": 760,
+        "y": 1000,
         "wires": [
             [
                 "57955f162a9e015a"
@@ -1055,7 +959,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 410,
-        "y": 720,
+        "y": 960,
         "wires": []
     },
     {
@@ -1064,8 +968,8 @@
         "z": "6e68ccc7619dd4a3",
         "name": "PLC memory",
         "info": "Questi flow permettono di effettuare\nopportunamente il clean e la lettura\ndella memoria.",
-        "x": 150,
-        "y": 500,
+        "x": 190,
+        "y": 900,
         "wires": []
     },
     {
@@ -1082,21 +986,21 @@
         "id": "35e64ebd7905c08f",
         "type": "ui_led",
         "z": "6e68ccc7619dd4a3",
-        "order": 1,
+        "order": 4,
         "group": "754823324e1fd8fc",
         "width": 0,
         "height": 0,
-        "label": "Connection",
+        "label": "Failure",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
             {
-                "color": "#008000",
+                "color": "#ff0000",
                 "value": "1",
                 "valueType": "num"
             }
@@ -1104,9 +1008,9 @@
         "allowColorForValueInMessage": false,
         "shape": "circle",
         "showGlow": true,
-        "name": "ConnectionLED",
-        "x": 740,
-        "y": 400,
+        "name": "FailureLED",
+        "x": 770,
+        "y": 380,
         "wires": []
     },
     {
@@ -1120,12 +1024,261 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 400,
+        "x": 510,
+        "y": 380,
         "wires": [
             [
                 "35e64ebd7905c08f"
             ]
         ]
+    },
+    {
+        "id": "5c9ffe43903514d6",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "stops the generator downstream of a failure",
+        "func": "var counter = flow.get(\"Counter\");\n\nvar failure = msg.payload[0];\nvar period = 10;\n\nif (failure) {\n    counter = (++counter)%period;\n     if (counter == 0)\n        global.set(\"Generator\", \"off\");\n} else\n    counter = 0;\n    \nmsg.payload = counter;\n\nflow.set(\"Counter\", counter);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Counter\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 440,
+        "wires": [
+            [
+                "d53c695155ac2117"
+            ]
+        ]
+    },
+    {
+        "id": "d53c695155ac2117",
+        "type": "debug",
+        "z": "6e68ccc7619dd4a3",
+        "name": "CounterDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2d9bde2834bc3ad7",
+        "type": "inject",
+        "z": "6e68ccc7619dd4a3",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "\"Generator state\"",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "7b5937f8ce1b25a0"
+            ]
+        ]
+    },
+    {
+        "id": "7b5937f8ce1b25a0",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "reads generator state",
+        "func": "var generator = global.get(\"Generator\");\n\nif (generator == \"on\")\n    msg.payload = true;\nelse\n    msg.payload = false;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 580,
+        "wires": [
+            [
+                "646409ba72e3da11",
+                "3f40092a829ad985"
+            ]
+        ]
+    },
+    {
+        "id": "646409ba72e3da11",
+        "type": "ui_led",
+        "z": "6e68ccc7619dd4a3",
+        "order": 3,
+        "group": "754823324e1fd8fc",
+        "width": 0,
+        "height": 0,
+        "label": "Generator",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "GeneratorLED",
+        "x": 620,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "3f40092a829ad985",
+        "type": "debug",
+        "z": "6e68ccc7619dd4a3",
+        "name": "GeneratorDebug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b4b34a436dca5741",
+        "type": "ui_button",
+        "z": "6e68ccc7619dd4a3",
+        "name": "RestartButton",
+        "group": "754823324e1fd8fc",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Restart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Restart",
+        "topicType": "str",
+        "x": 140,
+        "y": 720,
+        "wires": [
+            [
+                "e62f7ed95179cd57",
+                "dbeb7a946c25f60d"
+            ]
+        ]
+    },
+    {
+        "id": "e62f7ed95179cd57",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "restarts the plant",
+        "func": "var threshold = global.get(\"Threshold\");\n\nif (msg.topic == \"Restart\") {\n    global.set(\"Generator\", \"on\");\n    global.set(\"Power\", threshold/2);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e96a4ee949135f8",
+        "type": "subflow:ebff01b2ab5c17c7",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "IED1",
+        "x": 410,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "df2f1a061b3de1d8",
+        "type": "ui_button",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "FailureButton",
+        "group": "754823324e1fd8fc",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Inject",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Injection",
+        "topicType": "str",
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "4e96a4ee949135f8"
+            ]
+        ]
+    },
+    {
+        "id": "b06652c825814228",
+        "type": "ui_button",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "RestoreButton",
+        "group": "754823324e1fd8fc",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Restore",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Restoration",
+        "topicType": "str",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "4e96a4ee949135f8"
+            ]
+        ]
+    },
+    {
+        "id": "d90ed2cac6a02473",
+        "type": "comment",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "Funzionamento di G-IED",
+        "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
+        "x": 290,
+        "y": 140,
+        "wires": []
     }
 ]
