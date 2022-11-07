@@ -304,7 +304,7 @@
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
-        "x": 1200,
+        "x": 1220,
         "y": 340,
         "wires": [
             [
@@ -716,23 +716,6 @@
                 "7e2ee599ed3a1da4",
                 "111a1ce21b25c4a7"
             ]
-        ]
-    },
-    {
-        "id": "971130cf094af1d9",
-        "type": "function",
-        "z": "ebff01b2ab5c17c7",
-        "name": "if the failure state is updated",
-        "func": "var previousFailureState = global.get(\"failure\");\nvar failureState = {Number : msg.payload};\n\nif (previousFailureState == failureState)\n    msg.update = false;\nelse\n    msg.update = true;\n\nmsg.payload = [failureState];\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"failure\", 0);",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 60,
-        "wires": [
-            []
         ]
     },
     {
