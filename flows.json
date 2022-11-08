@@ -24,7 +24,7 @@
         "in": [
             {
                 "x": 200,
-                "y": 780,
+                "y": 760,
                 "wires": [
                     {
                         "id": "1a23bd909095073e"
@@ -275,14 +275,14 @@
         "type": "function",
         "z": "ebff01b2ab5c17c7",
         "name": "compares the value with a threshold",
-        "func": "var threshold = global.get(\"threshold\");\nvar state = flow.get(\"state\");\nvar cb0 = flow.get(\"cb0\");\n\nvar failure = 0;\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    value = global.get(\"power\");\n    if (value > threshold) {\n        cb0 = 1;\n        failure = 1;\n    }\n} else value = 0;\n\nflow.set(\"cb0\", cb0);\n\nmsg.cb0 = cb0;\nmsg.value = value;\nmsg.payload = failure;\n\nreturn msg;",
+        "func": "var threshold = global.get(\"threshold\");\nvar state = global.get(\"state\");\nvar cb0 = flow.get(\"cb0\");\n\nvar failure = 0;\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    value = global.get(\"power\");\n    if (value > threshold) {\n        cb0 = 1;\n        failure = 1;\n    }\n} else value = 0;\n\nflow.set(\"cb0\", cb0);\n\nmsg.cb0 = cb0;\nmsg.value = value;\nmsg.payload = failure;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"threshold\", 50000);\nflow.set(\"state\", 0);",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 200,
+        "x": 430,
+        "y": 160,
         "wires": [
             [
                 "ae27c91aae8f8d4b",
@@ -304,8 +304,8 @@
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
-        "x": 1220,
-        "y": 340,
+        "x": 1160,
+        "y": 300,
         "wires": [
             [
                 "95e679e3ff5e511f"
@@ -333,8 +333,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1130,
-        "y": 220,
+        "x": 1050,
+        "y": 180,
         "wires": [
             [
                 "603cb110f15cb39b"
@@ -359,7 +359,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 300,
+        "y": 260,
         "wires": [
             [
                 "7324daa98bc4c7d5",
@@ -373,15 +373,15 @@
         "z": "ebff01b2ab5c17c7",
         "name": "and receives a response",
         "registerShowMax": 20,
-        "x": 1250,
-        "y": 400,
+        "x": 1450,
+        "y": 300,
         "wires": []
     },
     {
         "id": "8ec6196c115f659c",
         "type": "buffer-parser",
         "z": "ebff01b2ab5c17c7",
-        "name": "reads a register",
+        "name": "reads the state",
         "data": "payload",
         "dataType": "msg",
         "specification": "spec",
@@ -389,7 +389,7 @@
         "items": [
             {
                 "type": "int16be",
-                "name": "value",
+                "name": "state",
                 "offset": 0,
                 "length": 1,
                 "offsetbit": 0,
@@ -411,8 +411,8 @@
         "fanOutMultipleResult": false,
         "setTopic": true,
         "outputs": 1,
-        "x": 700,
-        "y": 540,
+        "x": 620,
+        "y": 380,
         "wires": [
             [
                 "6ab4edb83eb1758b"
@@ -424,14 +424,14 @@
         "type": "function",
         "z": "ebff01b2ab5c17c7",
         "name": "and sets the state",
-        "func": "var registerValue = msg.payload;\nvar state = flow.get(\"state\");\n\n//Se il PLC invia un valore alto,\n//allora il dispositivo viene attivato.\nif (registerValue > 0)\n    state = 1;\nelse\n    state = 0;\n\nmsg.payload = state;\n\nflow.set(\"state\", state);\n\nreturn msg;",
+        "func": "var registerValue = msg.payload;\nvar state = global.get(\"state\");\n\n//Se il PLC invia un valore alto,\n//allora il dispositivo viene attivato.\nif (registerValue > 0)\n    state = 1;\nelse\n    state = 0;\n\nmsg.payload = state;\n\nglobal.set(\"state\", state);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"cb0\", 0);",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 540,
+        "x": 850,
+        "y": 380,
         "wires": [
             [
                 "c508fce9b140fe4d"
@@ -468,8 +468,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1190,
-        "y": 280,
+        "x": 1130,
+        "y": 240,
         "wires": [
             [
                 "4db6d3fc7a30a1bb"
@@ -499,8 +499,8 @@
         "seg1": "35000",
         "seg2": "50000",
         "className": "",
-        "x": 790,
-        "y": 160,
+        "x": 710,
+        "y": 140,
         "wires": []
     },
     {
@@ -530,7 +530,7 @@
         "shape": "circle",
         "showGlow": true,
         "name": "CB0Led",
-        "x": 1440,
+        "x": 1380,
         "y": 240,
         "wires": []
     },
@@ -561,8 +561,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "StateLed",
-        "x": 1140,
-        "y": 500,
+        "x": 1060,
+        "y": 380,
         "wires": []
     },
     {
@@ -571,7 +571,7 @@
         "z": "ebff01b2ab5c17c7",
         "name": "Real IED",
         "info": "",
-        "x": 420,
+        "x": 180,
         "y": 80,
         "wires": []
     },
@@ -581,7 +581,7 @@
         "z": "ebff01b2ab5c17c7",
         "name": "Generator",
         "info": "",
-        "x": 420,
+        "x": 180,
         "y": 640,
         "wires": []
     },
@@ -607,7 +607,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 700,
+        "y": 720,
         "wires": [
             [
                 "1a23bd909095073e"
@@ -680,11 +680,12 @@
         "funcSetCoil": "function setFlexCoil(addr, value, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\tnode.coils.writeUInt8(value, addr * node.bufferFactor)  \n\t} \n}",
         "funcSetRegister": "function setFlexRegister(addr, value, unitID) { \n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\tnode.registers.writeUInt16BE(value, addr * node.bufferFactor)  \n\t} \n}",
         "showErrors": false,
-        "x": 460,
-        "y": 520,
+        "x": 380,
+        "y": 400,
         "wires": [
             [
-                "8ec6196c115f659c"
+                "8ec6196c115f659c",
+                "fd7bdf06e4cf8da1"
             ],
             [],
             [],
@@ -709,12 +710,191 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 840,
-        "y": 240,
+        "x": 760,
+        "y": 180,
         "wires": [
             [
                 "7e2ee599ed3a1da4",
                 "111a1ce21b25c4a7"
+            ]
+        ]
+    },
+    {
+        "id": "70af2e35d9fb9616",
+        "type": "inject",
+        "z": "ebff01b2ab5c17c7",
+        "name": "every long interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "0d26a23cb63957db",
+                "4e39627741de2291"
+            ]
+        ]
+    },
+    {
+        "id": "0d26a23cb63957db",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the power value",
+        "func": "var power = global.get(\"power\");\nvar state = global.get(\"state\");\n\nmsg.payload = power;\nmsg.state = state;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 500,
+        "wires": [
+            [
+                "b63ce68a01b6d512"
+            ]
+        ]
+    },
+    {
+        "id": "e5230ff3aff07b26",
+        "type": "modbus-write",
+        "z": "ebff01b2ab5c17c7",
+        "name": "writes the power value in the PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "20",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 860,
+        "y": 500,
+        "wires": [
+            [
+                "d848f5f1696a4211"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d848f5f1696a4211",
+        "type": "modbus-response",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and it receives a response",
+        "registerShowMax": 20,
+        "x": 1170,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "fd7bdf06e4cf8da1",
+        "type": "buffer-parser",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the command",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "cmd",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "bde7e23b159bbcfd"
+            ]
+        ]
+    },
+    {
+        "id": "bde7e23b159bbcfd",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "updates the command",
+        "func": "var cmd = msg.payload[0];\n\nglobal.set(\"cmd\", cmd);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"cmd\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e39627741de2291",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "executes the command",
+        "func": "var power = global.get(\"power\");\nvar cmd = global.get(\"cmd\");\nvar state = global.get(\"state\");\n\nif(state == 1) {\n    if (cmd == 0)\n        power += 0;\n    else if (cmd == 1)\n        power -= 2000;\n    else if (cmd == 2)\n        power += 2000;\n}\n\nglobal.set(\"power\", power);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b63ce68a01b6d512",
+        "type": "switch",
+        "z": "ebff01b2ab5c17c7",
+        "name": "",
+        "property": "state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 500,
+        "wires": [
+            [
+                "e5230ff3aff07b26"
             ]
         ]
     },
@@ -745,7 +925,7 @@
         "animate": false,
         "className": "",
         "x": 140,
-        "y": 220,
+        "y": 160,
         "wires": [
             [
                 "2070a79f2d85bdde"
@@ -764,7 +944,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 220,
+        "y": 160,
         "wires": [
             [
                 "21d9f3f50408d53a"
@@ -786,7 +966,7 @@
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
         "x": 640,
-        "y": 220,
+        "y": 160,
         "wires": [
             [
                 "d2a233d1c17e3b06"
@@ -801,7 +981,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 930,
-        "y": 180,
+        "y": 140,
         "wires": []
     },
     {
@@ -827,7 +1007,7 @@
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
         "x": 190,
-        "y": 380,
+        "y": 300,
         "wires": [
             [
                 "ecfa19f130dbb6cc",
@@ -844,7 +1024,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 490,
-        "y": 320,
+        "y": 240,
         "wires": []
     },
     {
@@ -862,7 +1042,7 @@
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
         "x": 670,
-        "y": 800,
+        "y": 640,
         "wires": [
             [
                 "ed435d717a40ac77"
@@ -877,7 +1057,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 950,
-        "y": 760,
+        "y": 620,
         "wires": []
     },
     {
@@ -892,7 +1072,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 760,
+        "y": 620,
         "wires": [
             [
                 "6df0b24d0ba88a26"
@@ -922,7 +1102,7 @@
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
         "x": 150,
-        "y": 1000,
+        "y": 840,
         "wires": [
             [
                 "57955f162a9e015a"
@@ -937,7 +1117,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 410,
-        "y": 960,
+        "y": 820,
         "wires": []
     },
     {
@@ -947,7 +1127,7 @@
         "name": "PLC memory",
         "info": "Questi flow permettono di effettuare\nopportunamente il clean e la lettura\ndella memoria.",
         "x": 190,
-        "y": 900,
+        "y": 740,
         "wires": []
     },
     {
@@ -956,8 +1136,8 @@
         "z": "6e68ccc7619dd4a3",
         "name": "PLC connection",
         "info": "Questi flow permettono di inviare\nil segnale al PLC, che richiederà la\nconnessione a G-IED.",
-        "x": 180,
-        "y": 140,
+        "x": 200,
+        "y": 80,
         "wires": []
     },
     {
@@ -988,7 +1168,7 @@
         "showGlow": true,
         "name": "FailureLED",
         "x": 770,
-        "y": 380,
+        "y": 300,
         "wires": []
     },
     {
@@ -1003,7 +1183,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 380,
+        "y": 300,
         "wires": [
             [
                 "35e64ebd7905c08f"
@@ -1022,7 +1202,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 440,
+        "y": 360,
         "wires": [
             [
                 "d53c695155ac2117"
@@ -1043,7 +1223,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 860,
-        "y": 480,
+        "y": 380,
         "wires": []
     },
     {
@@ -1063,7 +1243,7 @@
         "onceDelay": 0.1,
         "topic": "\"Generator state\"",
         "x": 140,
-        "y": 580,
+        "y": 480,
         "wires": [
             [
                 "7b5937f8ce1b25a0"
@@ -1082,7 +1262,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 580,
+        "y": 480,
         "wires": [
             [
                 "646409ba72e3da11",
@@ -1118,7 +1298,7 @@
         "showGlow": true,
         "name": "GeneratorLED",
         "x": 620,
-        "y": 620,
+        "y": 500,
         "wires": []
     },
     {
@@ -1135,7 +1315,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 630,
-        "y": 540,
+        "y": 460,
         "wires": []
     },
     {
@@ -1159,7 +1339,7 @@
         "topic": "restart",
         "topicType": "str",
         "x": 140,
-        "y": 720,
+        "y": 600,
         "wires": [
             [
                 "e62f7ed95179cd57",
@@ -1179,7 +1359,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 680,
+        "y": 580,
         "wires": [
             []
         ]
@@ -1189,8 +1369,8 @@
         "type": "subflow:ebff01b2ab5c17c7",
         "z": "3b3b3bd8ed7187ea",
         "name": "IED1",
-        "x": 410,
-        "y": 260,
+        "x": 330,
+        "y": 180,
         "wires": []
     },
     {
@@ -1213,8 +1393,8 @@
         "payloadType": "str",
         "topic": "injection",
         "topicType": "str",
-        "x": 190,
-        "y": 220,
+        "x": 130,
+        "y": 160,
         "wires": [
             [
                 "4e96a4ee949135f8"
@@ -1241,8 +1421,8 @@
         "payloadType": "str",
         "topic": "restoration",
         "topicType": "str",
-        "x": 180,
-        "y": 300,
+        "x": 140,
+        "y": 200,
         "wires": [
             [
                 "4e96a4ee949135f8"
@@ -1255,8 +1435,8 @@
         "z": "3b3b3bd8ed7187ea",
         "name": "Funzionamento di G-IED",
         "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
-        "x": 290,
-        "y": 140,
+        "x": 230,
+        "y": 80,
         "wires": []
     }
 ]
