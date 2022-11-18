@@ -4,10 +4,10 @@ from scapy.layers.inet import *
 transaction_id = 2023
 protocol_id = 0
 length = 6
-unit_id = 2
+unit_id = 3
 
 func_code = 6
-reference_number = 20
+reference_number = 5
 #byte_count = 1                     #da vedere
 data = 13000                        #da vedere
 
@@ -24,4 +24,4 @@ class Modbus(Packet):
     fields_desc = [ XByteField("Function Code", func_code),
                     ShortField("Reference Number", reference_number),
                     ShortField("Data", data)
-                    ]
+                    ]
