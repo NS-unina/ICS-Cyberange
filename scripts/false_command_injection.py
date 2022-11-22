@@ -4,9 +4,11 @@ from random import randint
 
 from modbuspkt import Modbus, ModbusTCP
 
+filter_rule = "dst host 192.168.25.128 and tcp[tcpflags]==tcp-ack"
+
 while True:
     # cattura un tcp ack diretto verso il plc
-    tcp_ack = sniff(iface="eth1", filter="dst host 10.0.0.22 and tcp and tcp.flags.syn==0 and tcp.flags.ack==1", count=1)
+    tcp_ack = sniff(iface="eth1", filter=filter_rule, count=1)
     
     print(" ----- TCP ACK ----- ")
     tcp_ack.show()
