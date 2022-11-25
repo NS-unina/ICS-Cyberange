@@ -189,7 +189,7 @@
         "animate": false,
         "className": "",
         "x": 140,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "2070a79f2d85bdde"
@@ -208,7 +208,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "21d9f3f50408d53a"
@@ -230,7 +230,7 @@
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
         "x": 660,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "d2a233d1c17e3b06"
@@ -245,7 +245,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 970,
-        "y": 200,
+        "y": 160,
         "wires": []
     },
     {
@@ -271,7 +271,7 @@
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
         "x": 220,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "ecfa19f130dbb6cc",
@@ -288,7 +288,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 550,
-        "y": 380,
+        "y": 420,
         "wires": []
     },
     {
@@ -314,7 +314,7 @@
         "useIOForPayload": false,
         "emptyMsgOnFail": false,
         "x": 190,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "57955f162a9e015a"
@@ -329,7 +329,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 490,
-        "y": 820,
+        "y": 880,
         "wires": []
     },
     {
@@ -339,7 +339,7 @@
         "name": "PLC memory",
         "info": "Questi flow permettono di effettuare\nopportunamente il clean e la lettura\ndella memoria.",
         "x": 190,
-        "y": 760,
+        "y": 820,
         "wires": []
     },
     {
@@ -380,7 +380,7 @@
         "showGlow": true,
         "name": "FailureLED",
         "x": 830,
-        "y": 440,
+        "y": 480,
         "wires": []
     },
     {
@@ -395,7 +395,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "35e64ebd7905c08f"
@@ -414,7 +414,7 @@
         "finalize": "",
         "libs": [],
         "x": 690,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "ae515b46644fb66e",
@@ -438,7 +438,7 @@
         "repair": false,
         "outputs": 1,
         "x": 1050,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "8773866f99204c9c"
@@ -457,7 +457,7 @@
         "finalize": "",
         "libs": [],
         "x": 1210,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "a2a6265a6be6f8ea",
@@ -480,7 +480,7 @@
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
         "x": 1220,
-        "y": 620,
+        "y": 660,
         "wires": [
             [
                 "e0761e8f0b77fb2f"
@@ -495,7 +495,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 1250,
-        "y": 680,
+        "y": 720,
         "wires": []
     },
     {
@@ -511,7 +511,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1070,
-        "y": 440,
+        "y": 480,
         "wires": []
     },
     {
@@ -528,7 +528,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1450,
-        "y": 440,
+        "y": 480,
         "wires": []
     },
     {
@@ -543,7 +543,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 260,
+        "y": 220,
         "wires": [
             [
                 "b38067262631e284"
@@ -565,7 +565,7 @@
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
         "x": 660,
-        "y": 260,
+        "y": 220,
         "wires": [
             [
                 "9c6a287d0e12a03b"
@@ -580,7 +580,7 @@
         "name": "and receives a response",
         "registerShowMax": 20,
         "x": 970,
-        "y": 260,
+        "y": 220,
         "wires": []
     },
     {
@@ -593,7 +593,7 @@
         "width": 3,
         "height": 1,
         "passthru": false,
-        "label": "Switch on",
+        "label": "Generator Start",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -603,8 +603,8 @@
         "payloadType": "str",
         "topic": "turn on",
         "topicType": "str",
-        "x": 140,
-        "y": 260,
+        "x": 150,
+        "y": 220,
         "wires": [
             [
                 "0b2027782eb827ae"
@@ -625,8 +625,8 @@
         "server": "831463b0b8bf21ef",
         "emptyMsgOnFail": false,
         "keepMsgProperties": false,
-        "x": 670,
-        "y": 320,
+        "x": 870,
+        "y": 340,
         "wires": [
             [
                 "b9256d88acba49c2"
@@ -640,28 +640,9 @@
         "z": "6e68ccc7619dd4a3",
         "name": "and receives a response",
         "registerShowMax": 20,
-        "x": 970,
-        "y": 320,
+        "x": 1170,
+        "y": 340,
         "wires": []
-    },
-    {
-        "id": "07d974bcdfc73141",
-        "type": "function",
-        "z": "6e68ccc7619dd4a3",
-        "name": "cleans PLC memory",
-        "func": "msg.payload = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 320,
-        "wires": [
-            [
-                "99c71ae41336789f"
-            ]
-        ]
     },
     {
         "id": "753e3c47fb546f45",
@@ -673,7 +654,7 @@
         "width": 3,
         "height": 1,
         "passthru": false,
-        "label": "Restart the system",
+        "label": "System Restart",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -684,11 +665,108 @@
         "topic": "restart",
         "topicType": "str",
         "x": 140,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
+                "460c90711eb705d5",
                 "07d974bcdfc73141"
             ]
         ]
+    },
+    {
+        "id": "c6552a11776a4b02",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "cleans PLC memory",
+        "func": "msg.payload = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "99c71ae41336789f"
+            ]
+        ]
+    },
+    {
+        "id": "460c90711eb705d5",
+        "type": "delay",
+        "z": "6e68ccc7619dd4a3",
+        "name": "some delay",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "c6552a11776a4b02"
+            ]
+        ]
+    },
+    {
+        "id": "07d974bcdfc73141",
+        "type": "function",
+        "z": "6e68ccc7619dd4a3",
+        "name": "stops generator ",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "07a3927746a3c9dd"
+            ]
+        ]
+    },
+    {
+        "id": "07a3927746a3c9dd",
+        "type": "modbus-write",
+        "z": "6e68ccc7619dd4a3",
+        "name": "writes the value in Generation PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "15",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "34c9879428da01ef"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "34c9879428da01ef",
+        "type": "modbus-response",
+        "z": "6e68ccc7619dd4a3",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 950,
+        "y": 280,
+        "wires": []
     }
 ]
