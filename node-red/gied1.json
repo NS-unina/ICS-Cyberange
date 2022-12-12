@@ -1,0 +1,1545 @@
+[
+    {
+        "id": "3b3b3bd8ed7187ea",
+        "type": "tab",
+        "label": "IED",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3f8f340db3e0b5b6",
+        "type": "tab",
+        "label": "Generator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ebff01b2ab5c17c7",
+        "type": "subflow",
+        "name": "IED",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "7e859fb4550fa5a8",
+        "type": "modbus-client",
+        "name": "Controller PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.24",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "4",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "3b5e9486fa3d6e62",
+        "type": "ui_tab",
+        "name": "G-IED1",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "36d2a8a0962b6e53",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0300cc",
+                "baseFont": "Tahoma,Geneva,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Tahoma,Geneva,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Tahoma,Geneva,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8b7ff1370815ca25",
+        "type": "ui_group",
+        "name": "IED",
+        "tab": "3b5e9486fa3d6e62",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "831463b0b8bf21ef",
+        "type": "modbus-client",
+        "name": "Generation PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.22",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "3",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "941ba05da9928e2c",
+        "type": "ui_group",
+        "name": "Generator",
+        "tab": "3b5e9486fa3d6e62",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9643d0040fe862d9",
+        "type": "ui_spacer",
+        "z": "3f8f340db3e0b5b6",
+        "name": "spacer",
+        "group": "941ba05da9928e2c",
+        "order": 2,
+        "width": "6",
+        "height": "1"
+    },
+    {
+        "id": "7324daa98bc4c7d5",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "compares the value with a threshold",
+        "func": "var threshold = global.get(\"threshold\");\nvar state = global.get(\"state\");\nvar cb0 = flow.get(\"cb0\");\n\nvar failure = 0;\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    value = global.get(\"power\");\n    if (value > threshold) {\n        cb0 = 1;\n        failure = 1;\n    }\n} else value = 0;\n\nflow.set(\"cb0\", cb0);\n\nmsg.cb0 = cb0;\nmsg.value = value;\nmsg.payload = failure;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"threshold\", 45000);\nflow.set(\"state\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "01603826cd718bf9"
+            ]
+        ]
+    },
+    {
+        "id": "7e2ee599ed3a1da4",
+        "type": "modbus-write",
+        "z": "ebff01b2ab5c17c7",
+        "name": "writes failure state in Generation PLC",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 1170,
+        "y": 260,
+        "wires": [
+            [
+                "95e679e3ff5e511f"
+            ],
+            []
+        ],
+        "inputLabels": [
+            "msg.payload"
+        ]
+    },
+    {
+        "id": "111a1ce21b25c4a7",
+        "type": "delay",
+        "z": "ebff01b2ab5c17c7",
+        "name": "activates circuit breaker",
+        "pauseType": "delayv",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            [
+                "603cb110f15cb39b"
+            ]
+        ]
+    },
+    {
+        "id": "024821b5ce7b7cfa",
+        "type": "inject",
+        "z": "ebff01b2ab5c17c7",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "7324daa98bc4c7d5",
+                "65c29bc7993bf667",
+                "9e9cb21edcb8ba0e",
+                "4e39627741de2291"
+            ]
+        ]
+    },
+    {
+        "id": "95e679e3ff5e511f",
+        "type": "modbus-response",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 1490,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8ec6196c115f659c",
+        "type": "buffer-parser",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the IED state",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "state",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "6ab4edb83eb1758b"
+            ]
+        ]
+    },
+    {
+        "id": "6ab4edb83eb1758b",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and updates the state",
+        "func": "var registerValue = msg.payload;\nvar state = global.get(\"state\");\n\n//Se il PLC invia un valore alto,\n//allora il dispositivo viene attivato.\nif (registerValue > 0)\n    state = 1;\nelse\n    state = 0;\n\nmsg.payload = state;\n\nglobal.set(\"state\", state);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"cb0\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "603cb110f15cb39b",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "generates a value for the LED",
+        "func": "var cb0 = msg.cb0;\n\nmsg.payload = cb0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79e4198832d4910a",
+        "type": "comment",
+        "z": "ebff01b2ab5c17c7",
+        "name": "Real IED",
+        "info": "",
+        "x": 180,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "65c29bc7993bf667",
+        "type": "modbus-flex-server",
+        "z": "ebff01b2ab5c17c7",
+        "name": "the server is listening",
+        "logEnabled": false,
+        "serverAddress": "0.0.0.0",
+        "serverPort": "502",
+        "responseDelay": 100,
+        "unitId": "3",
+        "delayUnit": "ms",
+        "coilsBufferSize": "20000",
+        "registersBufferSize": "20000",
+        "minAddress": 0,
+        "splitAddress": 10000,
+        "funcGetCoil": "function getFlexCoil(addr, unitID) {\n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+        "funcGetDiscreteInput": "function getFlexDiscreteInput(addr, unitID) {\n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+        "funcGetInputRegister": "function getFlexInputRegister(addr, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+        "funcGetHoldingRegister": "function getFlexHoldingRegsiter(addr, unitID) { \n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+        "funcSetCoil": "function setFlexCoil(addr, value, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\tnode.coils.writeUInt8(value, addr * node.bufferFactor)  \n\t} \n}",
+        "funcSetRegister": "function setFlexRegister(addr, value, unitID) { \n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\tnode.registers.writeUInt16BE(value, addr * node.bufferFactor)  \n\t} \n}",
+        "showErrors": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "8ec6196c115f659c",
+                "fd7bdf06e4cf8da1",
+                "e2752c5aaf66b4c4"
+            ],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "01603826cd718bf9",
+        "type": "switch",
+        "z": "ebff01b2ab5c17c7",
+        "name": "if the failure state is updated",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "prev"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "7e2ee599ed3a1da4",
+                "111a1ce21b25c4a7"
+            ]
+        ]
+    },
+    {
+        "id": "70af2e35d9fb9616",
+        "type": "inject",
+        "z": "ebff01b2ab5c17c7",
+        "name": "every long interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "0d26a23cb63957db"
+            ]
+        ]
+    },
+    {
+        "id": "0d26a23cb63957db",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the power value",
+        "func": "var power = global.get(\"power\");\nvar state = global.get(\"state\");\n\nmsg.payload = power;\nmsg.state = state;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 640,
+        "wires": [
+            [
+                "b63ce68a01b6d512"
+            ]
+        ]
+    },
+    {
+        "id": "e5230ff3aff07b26",
+        "type": "modbus-write",
+        "z": "ebff01b2ab5c17c7",
+        "name": "writes the power value in Generation PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "20",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 880,
+        "y": 640,
+        "wires": [
+            [
+                "d848f5f1696a4211"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d848f5f1696a4211",
+        "type": "modbus-response",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and it receives a response",
+        "registerShowMax": 20,
+        "x": 1210,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "fd7bdf06e4cf8da1",
+        "type": "buffer-parser",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the generator state",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "cmd",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "2233aafbf9b71d08"
+            ]
+        ]
+    },
+    {
+        "id": "bde7e23b159bbcfd",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "updates the command",
+        "func": "var cmd = msg.payload[0];\n\nglobal.set(\"cmd\", cmd);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"cmd\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e39627741de2291",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "executes the command",
+        "func": "var power = global.get(\"power\");\nvar cmd = global.get(\"cmd\");\nvar state = global.get(\"state\");\nvar generator = global.get(\"generator\");\n\nif(state == 1) {\n    if(generator == \"on\") {\n        switch (cmd) {\n            case 0:\n                power +=0;\n                break;\n            case 1:\n                power -= 500;\n                break;\n            case 2:\n                power += 500;\n                break;\n            case 3:\n                power -= 1000;\n                break;\n            case 4:\n                power += 1000;\n                break;\n            default:\n        }\n    }\n}\n\nglobal.set(\"power\", power);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b63ce68a01b6d512",
+        "type": "switch",
+        "z": "ebff01b2ab5c17c7",
+        "name": "",
+        "property": "state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 640,
+        "wires": [
+            [
+                "e5230ff3aff07b26"
+            ]
+        ]
+    },
+    {
+        "id": "e2752c5aaf66b4c4",
+        "type": "buffer-parser",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the command",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "shutdown",
+                "offset": 16,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 660,
+        "y": 460,
+        "wires": [
+            [
+                "bde7e23b159bbcfd"
+            ]
+        ]
+    },
+    {
+        "id": "2233aafbf9b71d08",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "and updates the generator state",
+        "func": "var generator = msg.payload[0];\n\nif (generator == 0)\n    global.set(\"generator\", \"off\");\nelse if (generator == 1)\n    global.set(\"generator\", \"on\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e9cb21edcb8ba0e",
+        "type": "function",
+        "z": "ebff01b2ab5c17c7",
+        "name": "reads the generator state",
+        "func": "var generator = global.get(\"generator\");\n\nif (generator == \"on\")\n    msg.payload = true;\nelse if (generator == \"off\")\n    msg.payload = false;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d90ed2cac6a02473",
+        "type": "comment",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "Funzionamento di G-IED",
+        "info": "Il componente IED è generato come subflow.\n\nLo IED calcola una grandezza e invia un valore al PLC\nper informare dello stato di CB0.\nIl PLC può modificare lo stato dell'IED richiedendo la\nscrittura di un valore.\n\nQuando il PLC è spento, CB0 è sempre basso.\nQuando il PLC è acceso, CB0 è alto quando il valore è\ninferiore alla soglia.",
+        "x": 1450,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d102ed8df6f159a9",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "compares the value with a threshold",
+        "func": "var threshold = global.get(\"threshold\");\nvar state = global.get(\"state\");\nvar cb0 = flow.get(\"cb0\");\n\nvar failure = 0;\nvar value = 0;\n\ncb0 = 0;\nif (state==1) {\n    value = global.get(\"power\");\n    if (value > threshold) {\n        cb0 = 1;\n        failure = 1;\n    }\n} else value = 0;\n\nflow.set(\"cb0\", cb0);\n\nmsg.cb0 = cb0;\nmsg.value = value;\nmsg.payload = failure;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"threshold\", 45000);\nflow.set(\"state\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 180,
+        "wires": [
+            [
+                "7b2cc43d91bd3667",
+                "a8cdc2977a9cb9bf"
+            ]
+        ]
+    },
+    {
+        "id": "ced681bb7d0755c0",
+        "type": "modbus-write",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "writes failure state in Generation PLC",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 1250,
+        "y": 320,
+        "wires": [
+            [
+                "05e6ef28dba0be4d"
+            ],
+            []
+        ],
+        "inputLabels": [
+            "msg.payload"
+        ]
+    },
+    {
+        "id": "f591683b464675d9",
+        "type": "delay",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "activates circuit breaker",
+        "pauseType": "delayv",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1090,
+        "y": 200,
+        "wires": [
+            [
+                "9034816545da2a78"
+            ]
+        ]
+    },
+    {
+        "id": "0feb48f04bdfec4c",
+        "type": "inject",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "d102ed8df6f159a9",
+                "72ea81639e687ac8",
+                "25c38a82631df82e",
+                "2a4d1956c79f2028"
+            ]
+        ]
+    },
+    {
+        "id": "05e6ef28dba0be4d",
+        "type": "modbus-response",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "and receives a response",
+        "registerShowMax": 20,
+        "x": 1570,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5b0977af5b9a5446",
+        "type": "buffer-parser",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "reads the IED state",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "state",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 690,
+        "y": 380,
+        "wires": [
+            [
+                "e62fdd083965b69e"
+            ]
+        ]
+    },
+    {
+        "id": "e62fdd083965b69e",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "and updates the state",
+        "func": "var registerValue = msg.payload;\nvar state = global.get(\"state\");\n\n//Se il PLC invia un valore alto,\n//allora il dispositivo viene attivato.\nif (registerValue > 0)\n    state = 1;\nelse\n    state = 0;\n\nmsg.payload = state;\n\nglobal.set(\"state\", state);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"cb0\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 380,
+        "wires": [
+            [
+                "f8e64c3bd011658e"
+            ]
+        ]
+    },
+    {
+        "id": "9034816545da2a78",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "generates a value for the LED",
+        "func": "var cb0 = msg.cb0;\n\nmsg.payload = cb0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 260,
+        "wires": [
+            [
+                "b6072655b51da5e8"
+            ]
+        ]
+    },
+    {
+        "id": "b6072655b51da5e8",
+        "type": "ui_led",
+        "z": "3b3b3bd8ed7187ea",
+        "order": 3,
+        "group": "8b7ff1370815ca25",
+        "width": 0,
+        "height": 0,
+        "label": "CB0",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "CB0Led",
+        "x": 1420,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f8e64c3bd011658e",
+        "type": "ui_led",
+        "z": "3b3b3bd8ed7187ea",
+        "order": 4,
+        "group": "8b7ff1370815ca25",
+        "width": 0,
+        "height": 0,
+        "label": "Status",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "IedStateLed",
+        "x": 1170,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3a326a4bd5e945f4",
+        "type": "comment",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "Real IED",
+        "info": "",
+        "x": 220,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "72ea81639e687ac8",
+        "type": "modbus-flex-server",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "the server is listening",
+        "logEnabled": false,
+        "serverAddress": "0.0.0.0",
+        "serverPort": "502",
+        "responseDelay": 100,
+        "unitId": "3",
+        "delayUnit": "ms",
+        "coilsBufferSize": "20000",
+        "registersBufferSize": "20000",
+        "minAddress": 0,
+        "splitAddress": 10000,
+        "funcGetCoil": "function getFlexCoil(addr, unitID) {\n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+        "funcGetDiscreteInput": "function getFlexDiscreteInput(addr, unitID) {\n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+        "funcGetInputRegister": "function getFlexInputRegister(addr, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+        "funcGetHoldingRegister": "function getFlexHoldingRegsiter(addr, unitID) { \n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+        "funcSetCoil": "function setFlexCoil(addr, value, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\tnode.coils.writeUInt8(value, addr * node.bufferFactor)  \n\t} \n}",
+        "funcSetRegister": "function setFlexRegister(addr, value, unitID) { \n\taddr += node.splitAddress\n\tif (unitID === node.unitId && \n\t\taddr >= node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\tnode.registers.writeUInt16BE(value, addr * node.bufferFactor)  \n\t} \n}",
+        "showErrors": false,
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "5b0977af5b9a5446",
+                "b93a19559d84c719",
+                "d504dbf99c49101f",
+                "63017fdf4bf7edb3"
+            ],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7b2cc43d91bd3667",
+        "type": "switch",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "if the failure state is updated",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "prev"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 800,
+        "y": 200,
+        "wires": [
+            [
+                "ced681bb7d0755c0",
+                "f591683b464675d9"
+            ]
+        ]
+    },
+    {
+        "id": "1f147685ea9f64ef",
+        "type": "inject",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "every long interval",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 620,
+        "wires": [
+            [
+                "46c599c08be721b5"
+            ]
+        ]
+    },
+    {
+        "id": "46c599c08be721b5",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "reads the power value",
+        "func": "var power = global.get(\"power\");\nvar state = global.get(\"state\");\n\nmsg.payload = power;\nmsg.state = state;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 620,
+        "wires": [
+            [
+                "53389f854c551971"
+            ]
+        ]
+    },
+    {
+        "id": "05a1fda17a30c4cc",
+        "type": "modbus-write",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "writes the power value in Generation PLC",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "2",
+        "dataType": "HoldingRegister",
+        "adr": "20",
+        "quantity": "1",
+        "server": "831463b0b8bf21ef",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 920,
+        "y": 620,
+        "wires": [
+            [
+                "3326cad3fd9579a6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3326cad3fd9579a6",
+        "type": "modbus-response",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "and it receives a response",
+        "registerShowMax": 20,
+        "x": 1250,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "b93a19559d84c719",
+        "type": "buffer-parser",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "reads the generator state",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "cmd",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 710,
+        "y": 420,
+        "wires": [
+            [
+                "e7fecadb8d72b9bb"
+            ]
+        ]
+    },
+    {
+        "id": "a8af87df812feb11",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "updates the command",
+        "func": "var cmd = msg.payload[0];\n\nglobal.set(\"cmd\", cmd);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"cmd\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a4d1956c79f2028",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "executes the command",
+        "func": "var power = global.get(\"power\");\nvar cmd = global.get(\"cmd\");\nvar state = global.get(\"state\");\nvar generator = global.get(\"generator\");\n\nif(state == 1) {\n    if(generator == \"on\") {\n        switch (cmd) {\n            case 0:\n                power +=0;\n                break;\n            case 1:\n                power -= 500;\n                break;\n            case 2:\n                power += 500;\n                break;\n            case 3:\n                power -= 1000;\n                break;\n            case 4:\n                power += 1000;\n                break;\n            default:\n        }\n    }\n}\n\nglobal.set(\"power\", power);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53389f854c551971",
+        "type": "switch",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "",
+        "property": "state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 620,
+        "wires": [
+            [
+                "05a1fda17a30c4cc"
+            ]
+        ]
+    },
+    {
+        "id": "d504dbf99c49101f",
+        "type": "buffer-parser",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "reads the command",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "int16be",
+                "name": "shutdown",
+                "offset": 16,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "value",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 700,
+        "y": 460,
+        "wires": [
+            [
+                "a8af87df812feb11"
+            ]
+        ]
+    },
+    {
+        "id": "e7fecadb8d72b9bb",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "and updates the generator state",
+        "func": "var generator = msg.payload[0];\n\nif (generator == 0)\n    global.set(\"generator\", \"off\");\nelse if (generator == 1)\n    global.set(\"generator\", \"on\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25c38a82631df82e",
+        "type": "function",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "reads the generator state",
+        "func": "var generator = global.get(\"generator\");\n\nif (generator == \"on\")\n    msg.payload = true;\nelse if (generator == \"off\")\n    msg.payload = false;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "d9ab3c724380e340"
+            ]
+        ]
+    },
+    {
+        "id": "d9ab3c724380e340",
+        "type": "ui_led",
+        "z": "3b3b3bd8ed7187ea",
+        "order": 5,
+        "group": "8b7ff1370815ca25",
+        "width": 0,
+        "height": 0,
+        "label": "Generator",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "GeneratorStateLed",
+        "x": 710,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a8cdc2977a9cb9bf",
+        "type": "ui_gauge",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "ValueGauge",
+        "group": "8b7ff1370815ca25",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Power",
+        "label": "kW",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "40000",
+        "seg2": "45000",
+        "className": "",
+        "x": 750,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "63017fdf4bf7edb3",
+        "type": "debug",
+        "z": "3b3b3bd8ed7187ea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "45d420f19df7c5ce",
+        "type": "function",
+        "z": "3f8f340db3e0b5b6",
+        "name": "the plant generates power",
+        "func": "var generator = global.get(\"generator\");\nvar power = global.get(\"power\");\nvar threshold = global.get(\"threshold\");\n\nif (generator == \"on\") {\n    //Iniezione di un guasto nel sistema\n    if (msg.topic == \"injection\")\n        power += 20000;\n    //Ripristino del sistema a un valore sicuro\n    else if (msg.topic == \"restoration\")\n        power = 30000;\n    else {\n        //Genera un valore casuale nell'insieme {-1, 0, 1}\n        var delta = (Math.round(Math.random() * 2 - 1)) * 500;\n        power += delta;\n    }\n    //Se il valore ottenuto eccede i range\n    //viene ricondotto al valore minimo oppure\n    //al valore massimo\n    if (power < 0)\n        power = 0;\n    if (power > 50000)\n        power = 50000;\n} else if (generator == \"off\") {\n    if (msg.topic == \"power generation\")\n        power = 0;\n}\n\nmsg.payload = power;\n\nglobal.set(\"power\", power);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"generator\", \"off\");",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "83964b37bc9c27f1"
+            ]
+        ]
+    },
+    {
+        "id": "1915c2c773c1bb0e",
+        "type": "inject",
+        "z": "3f8f340db3e0b5b6",
+        "name": "every interval",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0",
+        "topic": "power generation",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "45d420f19df7c5ce"
+            ]
+        ]
+    },
+    {
+        "id": "83964b37bc9c27f1",
+        "type": "ui_chart",
+        "z": "3f8f340db3e0b5b6",
+        "name": "PowerChart",
+        "group": "941ba05da9928e2c",
+        "order": 1,
+        "width": 6,
+        "height": "5",
+        "label": "Power",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50000",
+        "removeOlder": "30",
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4eb5a0d95093546",
+        "type": "ui_button",
+        "z": "3f8f340db3e0b5b6",
+        "name": "FailureButton",
+        "group": "941ba05da9928e2c",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Inject",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "injection",
+        "topicType": "str",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "45d420f19df7c5ce"
+            ]
+        ]
+    },
+    {
+        "id": "b29430905f7b4557",
+        "type": "ui_button",
+        "z": "3f8f340db3e0b5b6",
+        "name": "RestoreButton",
+        "group": "941ba05da9928e2c",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Restore",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "restoration",
+        "topicType": "str",
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "45d420f19df7c5ce"
+            ]
+        ]
+    }
+]
