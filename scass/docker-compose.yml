@@ -1,0 +1,33 @@
+services:
+  generalplc:
+    container_name: generalplc-node-red
+    build:
+      context: ./generalplc
+    networks:
+      scass-smartgrid:
+        ipv4_address: "10.0.0.200"
+  gied1:
+    container_name: gied1-node-red
+    build:
+      context: ./gied1
+    networks:
+      scass-smartgrid:
+        ipv4_address: "10.0.0.201"
+  gied2:
+    container_name: gied2-node-red
+    build:
+      context: ./gied2
+    networks:
+      scass-smartgrid:
+        ipv4_address: "10.0.0.202"
+
+networks:
+  scass-smartgrid:
+    name: scass
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: "10.0.0.0/24"
+          ip_range: "10.0.0.0/24"
