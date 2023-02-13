@@ -1,0 +1,8 @@
+# tcp.proxy configuration
+set tcp.proxy.port 502
+set tcp.address 10.0.0.21
+set tcp.port 502
+set tcp.tunnel.address 127.0.0.1
+set tcp.tunnel.port 5020
+# components start
+tcp.proxy on
