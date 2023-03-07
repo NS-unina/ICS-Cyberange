@@ -1,0 +1,9 @@
+1,"canSpoof(controlAction4)","OR",0
+2,"RULE 0 (Traffic spoofed)","AND",1
+3,"controlFlow(mainPLC,genPLC,controlAction4)","LEAF",1
+4,"arpPoisoning(mainPLC,genPLC)","OR",0
+5,"RULE 1 (ARP Poisoning)","AND",0.8
+6,"inSubnet(genPLC,scassNet)","LEAF",1
+7,"inSubnet(mainPLC,scassNet)","LEAF",1
+8,"l2Discovery(genPLC,arp)","LEAF",1
+9,"l2Discovery(mainPLC,arp)","LEAF",1

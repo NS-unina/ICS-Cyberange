@@ -1,0 +1,19 @@
+digraph G {
+	1 [label="1:canSpoof(controlAction4):0",shape=diamond];
+	2 [label="2:RULE 0 (Traffic spoofed):1",shape=ellipse];
+	3 [label="3:controlFlow(mainPLC,genPLC,controlAction4):1",shape=box];
+	4 [label="4:arpPoisoning(mainPLC,genPLC):0",shape=diamond];
+	5 [label="5:RULE 1 (ARP Poisoning):0.8",shape=ellipse];
+	6 [label="6:inSubnet(genPLC,scassNet):1",shape=box];
+	7 [label="7:inSubnet(mainPLC,scassNet):1",shape=box];
+	8 [label="8:l2Discovery(genPLC,arp):1",shape=box];
+	9 [label="9:l2Discovery(mainPLC,arp):1",shape=box];
+	3 -> 	2;
+	6 -> 	5;
+	7 -> 	5;
+	8 -> 	5;
+	9 -> 	5;
+	5 -> 	4;
+	4 -> 	2;
+	2 -> 	1;
+}

@@ -1,0 +1,78 @@
+primitive(inCompetent,1).
+primitive(competent,1).
+primitive(clientProgram,2).
+primitive(vuln_exists,7).
+primitive(vulExists,3).
+primitive(vulProperty,3).
+primitive(vulProperty,5).
+primitive(hacl,4).
+primitive(attackerLocated,1).
+primitive(hasAccount,3).
+primitive(networkServiceInfo,5).
+primitive(setuidProgramInfo,3).
+primitive(nfsExportInfo,4).
+primitive(nfsMounted,5).
+primitive(localFileProtection,4).
+primitive(dependsOn,3).
+primitive(installed,2).
+primitive(isWebServer,1).
+primitive(isUserMachine,1).
+primitive(vulExists,5).
+primitive(canAccessFile,4).
+primitive(controlsFlow,2).
+primitive(inSubnet,2).
+primitive(transportsFlow,2).
+primitive(isGateway,1).
+primitive(controlFlow,3).
+primitive(feedbackFlow,3).
+primitive(l2Discovery,2).
+primitive(cvss,2).
+derived(execCode,2).
+derived(netAccess,3).
+derived(canAccessHost,1).
+derived(accessFile,3).
+derived(principalCompromised,1).
+derived(logInService,3).
+derived(accessMaliciousInput,3).
+derived(canTamper,1).
+derived(canSpoof,1).
+derived(arpPoisoning,2).
+meta(attackGoal,1).
+meta(advances,2).
+
+attack(canSpoof(controlAction4)).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(mainPLC,mainPLC),[inSubnet(mainPLC,scassNet),inSubnet(mainPLC,scassNet),l2Discovery(mainPLC,arp),l2Discovery(mainPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(mainPLC,genPLC),[inSubnet(genPLC,scassNet),inSubnet(mainPLC,scassNet),l2Discovery(genPLC,arp),l2Discovery(mainPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(mainPLC,gIED1),[inSubnet(gIED1,scassNet),inSubnet(mainPLC,scassNet),l2Discovery(gIED1,arp),l2Discovery(mainPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(mainPLC,gIED2),[inSubnet(gIED2,scassNet),inSubnet(mainPLC,scassNet),l2Discovery(gIED2,arp),l2Discovery(mainPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(genPLC,mainPLC),[inSubnet(mainPLC,scassNet),inSubnet(genPLC,scassNet),l2Discovery(mainPLC,arp),l2Discovery(genPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(genPLC,genPLC),[inSubnet(genPLC,scassNet),inSubnet(genPLC,scassNet),l2Discovery(genPLC,arp),l2Discovery(genPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(genPLC,gIED1),[inSubnet(gIED1,scassNet),inSubnet(genPLC,scassNet),l2Discovery(gIED1,arp),l2Discovery(genPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(genPLC,gIED2),[inSubnet(gIED2,scassNet),inSubnet(genPLC,scassNet),l2Discovery(gIED2,arp),l2Discovery(genPLC,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED1,mainPLC),[inSubnet(mainPLC,scassNet),inSubnet(gIED1,scassNet),l2Discovery(mainPLC,arp),l2Discovery(gIED1,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED1,genPLC),[inSubnet(genPLC,scassNet),inSubnet(gIED1,scassNet),l2Discovery(genPLC,arp),l2Discovery(gIED1,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED1,gIED1),[inSubnet(gIED1,scassNet),inSubnet(gIED1,scassNet),l2Discovery(gIED1,arp),l2Discovery(gIED1,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED1,gIED2),[inSubnet(gIED2,scassNet),inSubnet(gIED1,scassNet),l2Discovery(gIED2,arp),l2Discovery(gIED1,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED2,mainPLC),[inSubnet(mainPLC,scassNet),inSubnet(gIED2,scassNet),l2Discovery(mainPLC,arp),l2Discovery(gIED2,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED2,genPLC),[inSubnet(genPLC,scassNet),inSubnet(gIED2,scassNet),l2Discovery(genPLC,arp),l2Discovery(gIED2,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED2,gIED1),[inSubnet(gIED1,scassNet),inSubnet(gIED2,scassNet),l2Discovery(gIED1,arp),l2Discovery(gIED2,arp)])).
+
+possible_duplicate_trace_step(because(1,rule_desc('ARP Poisoning',likely),arpPoisoning(gIED2,gIED2),[inSubnet(gIED2,scassNet),inSubnet(gIED2,scassNet),l2Discovery(gIED2,arp),l2Discovery(gIED2,arp)])).
+
+possible_duplicate_trace_step(because(0,rule_desc('Traffic spoofed',certain),canSpoof(controlAction4),[controlFlow(mainPLC,genPLC,controlAction4),arpPoisoning(mainPLC,genPLC)])).
+
