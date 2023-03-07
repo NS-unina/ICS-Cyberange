@@ -46,6 +46,8 @@
 
 :-(dynamic(transportsFlow(_h3142,_h3143))).
 
+:-(dynamic(protocol(_h3142,_h3143))).
+
 :-(dynamic(isGateway(_h3142))).
 
 :-(dynamic(controlFlow(_h3142,_h3143,_h3144))).

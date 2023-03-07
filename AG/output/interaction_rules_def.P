@@ -44,6 +44,7 @@ primitive(canAccessFile(_host, _user, _access, _path)).
 primitive(controlsFlow(_host, _flow)).
 primitive(inSubnet(_host, _subnet)).
 primitive(transportsFlow(_host, _flow)).
+primitive(protocol(_flow, _encrypted)).
 primitive(isGateway(_host)).
 primitive(controlFlow(_source, _destination, _flow)).
 primitive(feedbackFlow(_source, _destination, _flow)).
@@ -63,7 +64,7 @@ derived(accessMaliciousInput(_host, _principal, _program)).
 derived(canTamper(_flow)).
 derived(canSpoof(_flow)).
 derived(arpPoisoning(_host1, _host2)).
-
+derived(lossVisibility(_flow)).
 /* End of custom added primitives */
 
 %meta(cvss(_vulID, _ac)).
@@ -77,6 +78,7 @@ meta(advances(_, _)).
 /******************************************************/
 
 :- table canSpoof/1.
+:- table lossVisibility/1.
 :- table execCode/2.
 :- table netAccess/3.
 :- table canAccessHost/1.
@@ -116,8 +118,23 @@ interaction_rule(
 interaction_rule(
    (canSpoof(Flow) :-
     arpPoisoning(H, K),
+    protocol(Flow, plaintext),
     controlFlow(H, K, Flow)),
    rule_desc('Traffic spoofed', 'certain')).
+
+interaction_rule(
+   (canSpoof(Flow) :-
+    arpPoisoning(H, K),
+    protocol(Flow, plaintext),
+    feedbackFlow(H, K, Flow)),
+   rule_desc('Traffic spoofed', 'certain')).
+
+interaction_rule(
+   (lossVisibility(Flow) :-
+    canSpoof(Flow),
+    protocol(Flow, unauthenticated),
+    feedbackFlow(H, K, Flow)),
+   rule_desc('Altered output', 'certain')).
 
 /*
 interaction_rule(
@@ -127,7 +144,6 @@ interaction_rule(
     %controlFlow(H, K, Flow)),
    rule_desc('ARP Poisoning', 'certain')).
 
-*/
 /*
 interaction_rule(
    (canTamper(Flow) :-
