@@ -1,11 +1,11 @@
 /* Attack goal */
-attackGoal(canSpoof(controlAction4)).
-attackGoal(canSpoof(controlAction8)).
+attackGoal(canSpoof(controlAction2)).
+attackGoal(canSpoof(controlAction3)).
 
-attackGoal(lossVisibility(feedbackAction8)).
+attackGoal(lossVisibility(feedbackAction3)).
 
 /* Attacker location */
-attackerLocated(vulnHost).
+attackerLocated(scassNet).
 hacl(_,_,_,_).
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
@@ -13,23 +13,23 @@ hacl(X,Y,_,_):-
 
 /* Control Logic */
 /* Control flow Master-PLC to S-PLC*/
-controlFlow(mainPLC, genPLC, controlAction4).
-feedbackFlow(genPLC, mainPLC, feedbackAction4).
-protocol(controlAction4, plaintext).
+controlFlow(terminal, monitorControl, controlAction2).
+feedbackFlow(monitorControl, terminal, feedbackAction4).
+protocol(controlAction2, plaintext).
 /* Control flow Scada-System to Master-PLC*/
-controlFlow(genPLC, gIED2, controlAction8).
-feedbackFlow(gIED2, genPLC, feedbackAction8).
-protocol(feedbackAction8, plaintext).
-protocol(feedbackAction8, unauthenticated).
+controlFlow(monitorControl, gIed2, controlAction3).
+feedbackFlow(gIed2, monitorControl, feedbackAction3).
+protocol(feedbackAction3, plaintext).
+protocol(feedbackAction3, unauthenticated).
 
-inSubnet(mainPLC, scassNet).
-l2Discovery(mainPLC, arp).
-inSubnet(genPLC, scassNet).
-l2Discovery(genPLC, arp).
-inSubnet(gIED1, scassNet).
-l2Discovery(gIED1, arp).
-inSubnet(gIED2, scassNet).
-l2Discovery(gIED2, arp).
+inSubnet(terminal, scassNet).
+l2Discovery(terminal, arp).
+inSubnet(monitorControl, scassNet).
+l2Discovery(monitorControl, arp).
+inSubnet(gIed1, scassNet).
+l2Discovery(gIed1, arp).
+inSubnet(gIed2, scassNet).
+l2Discovery(gIed2, arp).
 inSubnet(vulnHost, scassNet).
 
 /* Vulnerabilities */

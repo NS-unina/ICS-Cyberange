@@ -65,6 +65,7 @@ derived(canTamper(_flow)).
 derived(canSpoof(_flow)).
 derived(arpPoisoning(_host1, _host2)).
 derived(lossVisibility(_flow)).
+derived(netVisibility(_flow)).
 /* End of custom added primitives */
 
 %meta(cvss(_vulID, _ac)).
@@ -81,6 +82,7 @@ meta(advances(_, _)).
 :- table lossVisibility/1.
 :- table execCode/2.
 :- table netAccess/3.
+:- table netVisibility/3.
 :- table canAccessHost/1.
 :- table canAccessFile/4.
 :- table accessFile/3.
@@ -167,15 +169,25 @@ interaction_rule(
 
 interaction_rule(
    (arpPoisoning(Host1, Host2) :-
-	l2Discovery(Host1, arp),
+	  l2Discovery(Host1, arp),
     l2Discovery(Host2, arp),
+    attackerLocated(Subnet),
     inSubnet(Host1, Subnet),
     inSubnet(Host2, Subnet)),
    rule_desc('ARP Poisoning', 'likely')).
 
 
-/****** Section execCode *******/
+/*
+interaction_rule(
+   (arpPoisoning(Host1, Host2) :-
+	  l2Discovery(Host1, arp),
+    l2Discovery(Host2, arp),
+    attackerLocated(Subnet),
+    inSubnet(Host1, Subnet),
+    inSubnet(Host2, Subnet)),
+   rule_desc('ARP Poisoning', 'likely')).
 
+*/
 /*
 interaction_rule(
    (execCode(H, Perm) :-
