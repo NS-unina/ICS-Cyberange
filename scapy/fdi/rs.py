@@ -70,10 +70,11 @@ if __name__ == "__main__":
     print("             rogue Modbus server        ")
     print()
 
-    print(" avvio thread di gestione della memoria, base -> {base}".format(base=base))
+    print(" starting memory management thread, base -> {base}".format(base=base))
     worker.start()
-    print(" avvio server Modbus, {host}:{port}".format(host=host,port=port))
+    print(" starting Modbus server, {host}:{port}".format(host=host,port=port))
     StartTcpServer(context, identity=identity, address=(host, port))
-    print(" chiusura server Modbus")
-    print(" raccolta del thread di gestione della memoria")
+    print(" stopping Modbus server")
+    print(" waiting for the memory management thread to join")
     worker.join()
+    
