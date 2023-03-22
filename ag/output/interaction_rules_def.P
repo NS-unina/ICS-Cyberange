@@ -62,7 +62,7 @@ derived(accessMaliciousInput(_host, _principal, _program)).
 
 /* Custom added derived predicates */
 derived(canTamper(_flow)).
-derived(canSpoof(_flow)).
+derived(canForgeSegment(_flow)).
 derived(arpPoisoning(_host1, _host2)).
 derived(lossVisibility(_flow)).
 derived(netVisibility(_flow)).
@@ -78,7 +78,7 @@ meta(advances(_, _)).
 /*   All derived predicates should be tabled          */
 /******************************************************/
 
-:- table canSpoof/1.
+:- table canForgeSegment/1.
 :- table lossVisibility/1.
 :- table execCode/2.
 :- table netAccess/3.
@@ -110,7 +110,7 @@ interaction_rule(
     rule_desc('Flow compromised', 'certain')).
 
 interaction_rule(
-    (canSpoof(Flow) :-
+    (canForgeSegment(Flow) :-
    	 netAccess(H, Protocol, Port),
      transportsFlow(H, Flow)),
     rule_desc('Access transport network', 'certain')).
@@ -118,22 +118,22 @@ interaction_rule(
 
 
 interaction_rule(
-   (canSpoof(Flow) :-
+   (canForgeSegment(Flow) :-
     arpPoisoning(H, K),
     protocol(Flow, plaintext),
     controlFlow(H, K, Flow)),
-   rule_desc('Traffic spoofed', 'certain')).
+   rule_desc('Segment forged', 'certain')).
 
 interaction_rule(
-   (canSpoof(Flow) :-
+   (canForgeSegment(Flow) :-
     arpPoisoning(H, K),
     protocol(Flow, plaintext),
     feedbackFlow(H, K, Flow)),
-   rule_desc('Traffic spoofed', 'certain')).
+   rule_desc('Segment forged', 'certain')).
 
 interaction_rule(
    (lossVisibility(Flow) :-
-    canSpoof(Flow),
+    canForgeSegment(Flow),
     protocol(Flow, unauthenticated),
     feedbackFlow(H, K, Flow)),
    rule_desc('Altered output', 'certain')).

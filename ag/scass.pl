@@ -1,6 +1,6 @@
 /* Attack goal */
-attackGoal(canSpoof(feedbackAction2)).
-attackGoal(canSpoof(controlAction3)).
+attackGoal(canForgeSegment(feedbackAction2)).
+attackGoal(canForgeSegment(controlAction3)).
 
 attackGoal(lossVisibility(feedbackAction3)).
 

@@ -100,13 +100,13 @@
 <vertices>
 <vertex>
 <id>1</id>
-<fact>canSpoof(feedbackAction2)</fact>
+<fact>canForgeSegment(feedbackAction2)</fact>
 <metric>0</metric>
 <type>OR</type>
 </vertex>
 <vertex>
 <id>2</id>
-<fact>RULE 1 (Traffic spoofed)</fact>
+<fact>RULE 1 (Segment forged)</fact>
 <metric>1</metric>
 <type>AND</type>
 </vertex>
@@ -190,13 +190,13 @@
 </vertex>
 <vertex>
 <id>16</id>
-<fact>canSpoof(feedbackAction3)</fact>
+<fact>canForgeSegment(feedbackAction3)</fact>
 <metric>0</metric>
 <type>OR</type>
 </vertex>
 <vertex>
 <id>17</id>
-<fact>RULE 1 (Traffic spoofed)</fact>
+<fact>RULE 1 (Segment forged)</fact>
 <metric>1</metric>
 <type>AND</type>
 </vertex>

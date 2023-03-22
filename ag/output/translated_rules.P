@@ -1,8 +1,8 @@
-:-(mvTrc(canSpoof(_h3473,0)),','(mvTrc(arpPoisoning(_h3478,_h3479,_h3524)),','(protocol(_h3473,plaintext),','(controlFlow(_h3478,_h3479,_h3473),assert_trace(because(0,rule_desc('Traffic spoofed',certain),canSpoof(_h3473),[controlFlow(_h3478,_h3479,_h3473),protocol(_h3473,plaintext),arpPoisoning(_h3478,_h3479)])))))).
+:-(mvTrc(canForgeSegment(_h3473,0)),','(mvTrc(arpPoisoning(_h3478,_h3479,_h3524)),','(protocol(_h3473,plaintext),','(controlFlow(_h3478,_h3479,_h3473),assert_trace(because(0,rule_desc('Segment forged',certain),canForgeSegment(_h3473),[controlFlow(_h3478,_h3479,_h3473),protocol(_h3473,plaintext),arpPoisoning(_h3478,_h3479)])))))).
 
-:-(mvTrc(canSpoof(_h3473,1)),','(mvTrc(arpPoisoning(_h3478,_h3479,_h3524)),','(protocol(_h3473,plaintext),','(feedbackFlow(_h3478,_h3479,_h3473),assert_trace(because(1,rule_desc('Traffic spoofed',certain),canSpoof(_h3473),[feedbackFlow(_h3478,_h3479,_h3473),protocol(_h3473,plaintext),arpPoisoning(_h3478,_h3479)])))))).
+:-(mvTrc(canForgeSegment(_h3473,1)),','(mvTrc(arpPoisoning(_h3478,_h3479,_h3524)),','(protocol(_h3473,plaintext),','(feedbackFlow(_h3478,_h3479,_h3473),assert_trace(because(1,rule_desc('Segment forged',certain),canForgeSegment(_h3473),[feedbackFlow(_h3478,_h3479,_h3473),protocol(_h3473,plaintext),arpPoisoning(_h3478,_h3479)])))))).
 
-:-(mvTrc(lossVisibility(_h3473,2)),','(mvTrc(canSpoof(_h3473,_h3523)),','(protocol(_h3473,unauthenticated),','(feedbackFlow(_h3486,_h3487,_h3473),assert_trace(because(2,rule_desc('Altered output',certain),lossVisibility(_h3473),[feedbackFlow(_h3486,_h3487,_h3473),protocol(_h3473,unauthenticated),canSpoof(_h3473)])))))).
+:-(mvTrc(lossVisibility(_h3473,2)),','(mvTrc(canForgeSegment(_h3473,_h3523)),','(protocol(_h3473,unauthenticated),','(feedbackFlow(_h3486,_h3487,_h3473),assert_trace(because(2,rule_desc('Altered output',certain),lossVisibility(_h3473),[feedbackFlow(_h3486,_h3487,_h3473),protocol(_h3473,unauthenticated),canForgeSegment(_h3473)])))))).
 
 :-(mvTrc(arpPoisoning(_h3473,_h3474,3)),','(l2Discovery(_h3473,arp),','(l2Discovery(_h3474,arp),','(attackerLocated(_h3491),','(inSubnet(_h3473,_h3491),','(inSubnet(_h3474,_h3491),assert_trace(because(3,rule_desc('ARP Poisoning',likely),arpPoisoning(_h3473,_h3474),[inSubnet(_h3474,_h3491),inSubnet(_h3473,_h3491),attackerLocated(_h3491),l2Discovery(_h3474,arp),l2Discovery(_h3473,arp)])))))))).
 

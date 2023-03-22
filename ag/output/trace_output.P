@@ -36,14 +36,14 @@ derived(principalCompromised,1).
 derived(logInService,3).
 derived(accessMaliciousInput,3).
 derived(canTamper,1).
-derived(canSpoof,1).
+derived(canForgeSegment,1).
 derived(arpPoisoning,2).
 derived(lossVisibility,1).
 derived(netVisibility,1).
 meta(attackGoal,1).
 meta(advances,2).
 
-attack(canSpoof(feedbackAction2)).
+attack(canForgeSegment(feedbackAction2)).
 
 possible_duplicate_trace_step(because(3,rule_desc('ARP Poisoning',likely),arpPoisoning(terminal,terminal),[inSubnet(terminal,scassNet),inSubnet(terminal,scassNet),attackerLocated(scassNet),l2Discovery(terminal,arp),l2Discovery(terminal,arp)])).
 
@@ -77,11 +77,11 @@ possible_duplicate_trace_step(because(3,rule_desc('ARP Poisoning',likely),arpPoi
 
 possible_duplicate_trace_step(because(3,rule_desc('ARP Poisoning',likely),arpPoisoning(gIed2,gIed2),[inSubnet(gIed2,scassNet),inSubnet(gIed2,scassNet),attackerLocated(scassNet),l2Discovery(gIed2,arp),l2Discovery(gIed2,arp)])).
 
-possible_duplicate_trace_step(because(1,rule_desc('Traffic spoofed',certain),canSpoof(feedbackAction2),[feedbackFlow(monitorControl,terminal,feedbackAction2),protocol(feedbackAction2,plaintext),arpPoisoning(monitorControl,terminal)])).
+possible_duplicate_trace_step(because(1,rule_desc('Segment forged',certain),canForgeSegment(feedbackAction2),[feedbackFlow(monitorControl,terminal,feedbackAction2),protocol(feedbackAction2,plaintext),arpPoisoning(monitorControl,terminal)])).
 
 attack(lossVisibility(feedbackAction3)).
 
-possible_duplicate_trace_step(because(1,rule_desc('Traffic spoofed',certain),canSpoof(feedbackAction3),[feedbackFlow(gIed2,monitorControl,feedbackAction3),protocol(feedbackAction3,plaintext),arpPoisoning(gIed2,monitorControl)])).
+possible_duplicate_trace_step(because(1,rule_desc('Segment forged',certain),canForgeSegment(feedbackAction3),[feedbackFlow(gIed2,monitorControl,feedbackAction3),protocol(feedbackAction3,plaintext),arpPoisoning(gIed2,monitorControl)])).
 
-possible_duplicate_trace_step(because(2,rule_desc('Altered output',certain),lossVisibility(feedbackAction3),[feedbackFlow(gIed2,monitorControl,feedbackAction3),protocol(feedbackAction3,unauthenticated),canSpoof(feedbackAction3)])).
+possible_duplicate_trace_step(because(2,rule_desc('Altered output',certain),lossVisibility(feedbackAction3),[feedbackFlow(gIed2,monitorControl,feedbackAction3),protocol(feedbackAction3,unauthenticated),canForgeSegment(feedbackAction3)])).
 
