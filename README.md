@@ -43,4 +43,4 @@ in _ag_ directory, run:
 $ ./genScript.sh
 ```
 
-_genScript.sh_ deploys a Docker container in which _MulVal_ is installed and performs the attack graph generation operations.
+_genScript.sh_ deploys a Docker container in which _MulVal_ is installed and performs the generation of an attack graph on _interaction_rules_def.P_ and _scass.pl_ files.
